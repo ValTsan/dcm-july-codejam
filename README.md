@@ -30,7 +30,13 @@
 
 ## Collaborators
 
+- Jeel Faldu
 - Devin Bhavsar 
 - Viktor Kliufinskyi
 - Steven Bolin
-- Jeel Faldu
+- Valerie Tsan
+  
+## License 📄
+
+This project is licensed under the MIT License.
+You’re free to use it, remix it, and make it your own.
