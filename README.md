@@ -1,12 +1,21 @@
-# React + Vite
+# SE and DS July Code Jam Collaboration 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+👩‍💻 Software Engineers 
+-  App scaffold + frontend (React)
+-  Sport selection UI
+-  Map + card layout 
+-  API or file loader for DS Output
+-  Rendering all result dynamically
 
-Currently, two official plugins are available:
+📊 Data Scientist
+- Data selection and cleaning 
+- Logic to match sports locations?
+- Weather-based optimization (mock?)
+- Output a clean JSON 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Collaborators
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Devin Bhavsar 
+- Viktor Kliufinskyi
+- Steven Bolin
+- Jeel Faldu
