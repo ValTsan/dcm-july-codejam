@@ -4,6 +4,36 @@
   font-weight: 400;
 
   color-scheme: light dark;
+  color: rgba(20, 31, 230, 0.87);
+  background-color: #edeef0;
+  /* background-color: #4a4a4a; */
+  --grid-bg: radial-gradient(#d0d0d0 0.3px, transparent 0.3px);
+  --grid-size: 10px 10px;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.content-layout {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .content-layout {
+    flex-direction: column;
+  }
+}
+
+/* :root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
@@ -65,4 +95,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
