@@ -1,6 +1,10 @@
 .header {
   width: 100%;
   text-align: center;
+  width: 100%;
+  background: #f2eee8;
+  box-shadow: 0px 0px 37px 0px rgba(4, 9, 50, 0.2);
+  margin: 0 0 20px;
 }
 
 .header__title {
@@ -11,4 +15,11 @@
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 2px;
+}
+
+.header__nav-list {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
 }
