@@ -116,7 +116,7 @@ function LandmarkList({ filter, setFilter, sort, setSort }) {
       </div>
       <div className="landmark-list__trip-summary">
         <p>Total Distance: {totalDistance} miles</p>
-        <p>Nmber of Stops: {totalStops}</p>
+        <p>Number of Stops: {totalStops}</p>
       </div>
     </div>
   );
