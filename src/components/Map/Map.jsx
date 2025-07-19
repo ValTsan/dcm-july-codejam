@@ -8,7 +8,8 @@ function Map({ filter, sort }) {
 
   useEffect(() => {
     // mapboxgl.setTelemetryEnabled(false);
-    const mapboxToken = import.meta.env.VITE_MAPBOX_TOKEN;
+    const mapboxToken =
+      "pk.eyJ1IjoidmFsdHNhbiIsImEiOiJjbWQ5NHJkdTIwNDFlMmtvZG9saDJlc3Y0In0.l01AoUmEDFryNDuGnfiZXg";
     if (!mapboxToken) {
       console.error("Mapbox token is not set.");
       return;
