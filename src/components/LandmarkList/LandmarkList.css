@@ -1,4 +1,5 @@
 .landmark-list {
-  position: absolute;
-  /* top: 100px; */
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
