@@ -1,0 +1,14 @@
+.header {
+  width: 100%;
+  text-align: center;
+}
+
+.header__title {
+  /* font-family: "Bitcount Grid Single"; */
+  font-family: "ShareTech Regular";
+  font-size: 40px;
+  color: #333;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}

@@ -3,11 +3,15 @@ import mapboxgl from "mapbox-gl";
 
 import "../App/App.css";
 import Header from "../Header/Header";
-import Map from "../Map/Map";
 import Main from "../Main/Main";
+import Map from "../Map/Map";
+import LandmarkList from "../LandmarkList/LandmarkList";
 import Footer from "../Footer/Footer";
 
 function App() {
+  const [filter, setFilter] = useState("all");
+  const [sort, setSort] = useState("popularity");
+
   //adding location data sets (from ds)
   //depends on what the team choose 1 or 2?
   //decide on the fonts
@@ -16,13 +20,22 @@ function App() {
   //needs checkboxes or is it dropdown to choose sports/activities? UI
   //goal overall UI/UX friendly
   //remember only MVP
+  //filtering / sorting logic?
 
   return (
     <div className="container">
-      <p className="title">ULTIMATE SUMMER SPORTS ADVENTURE </p>
       <Header />
       <Map
-      //Itinerary can be added here later on with data from ds
+        filter={filter}
+        setFilter={setFilter}
+        sort={sort}
+        setSort={setSort}
+      />
+      <LandmarkList
+        filter={filter}
+        setFilter={setFilter}
+        sort={sort}
+        setSort={setSort}
       />
       <Main />
       <Footer />
