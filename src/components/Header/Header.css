@@ -1,10 +1,20 @@
 .header {
+  position: fixed;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  display: grid;
   width: 100%;
-  text-align: center;
-  width: 100%;
-  background: #f2eee8;
-  box-shadow: 0px 0px 37px 0px rgba(4, 9, 50, 0.2);
-  margin: 0 0 20px;
+  height: var(--header-y);
+  padding: 0 var(--space);
+  align-items: center;
+  gap: 0 var(--space);
+  color: color(display-p3 0.13 0.13 0.13);
+  background-color: color(display-p3 0.98 0.98 0.98);
+  border-bottom: 1px solid currentColor;
+  font-variation-settings: "wght" 240;
+  letter-spacing: -0.04em;
 }
 
 .header__title {
@@ -15,6 +25,12 @@
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 2px;
+  display: flex;
+  justify-content: center;
+}
+
+.header__logo {
+  background-image: url(../images/BSRT.png);
 }
 
 .header__nav-list {
@@ -22,4 +38,5 @@
   display: flex;
   justify-content: space-evenly;
   list-style: none;
+  color: black;
 }

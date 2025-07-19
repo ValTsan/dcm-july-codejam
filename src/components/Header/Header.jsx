@@ -5,10 +5,13 @@ const Header = () => {
     <header className="header">
       <div className="header__navbar">
         <img className="header__logo"></img>
+        <ul className="header__nav-list">
+          <li>Memberships</li>
+          <li>Trails</li>
+          <li>Login</li>
+          <li>Sign Up</li>
+        </ul>
         <h1 className="header__title">Best Summer Sightseeing Roadtrip</h1>
-        <nav className="header__desktop-nav">
-          <ul className="header__nav-list"></ul>
-        </nav>
       </div>
     </header>
   );

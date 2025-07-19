@@ -101,7 +101,7 @@ function LandmarkList({ filter, setFilter, sort, setSort }) {
     <div className="landmark-list">
       <div className="landmark-list__controls">
         <select
-          class="landmark-list__filter"
+          className="landmark-list__filter"
           onChange={(e) => setFilter(e.target.value)}
           value={filter}
         >
