@@ -1,8 +1,15 @@
 @font-face {
-  font-family: "BitcountSingle";
+  font-family: "Bitcount Grid Single";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../vendor/fonts/BitcountSingle-VariableFont_CRSV\,ELSH\,ELXP\,slnt\,wght.ttf")
-    format("woff");
+  src: url("./fonts/BitcountGridSingle.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "ShareTech Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/ShareTech-Regular.ttf") format("truetype");
 }
