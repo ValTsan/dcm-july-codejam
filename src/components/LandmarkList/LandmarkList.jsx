@@ -94,7 +94,7 @@ function LandmarkList({ filter, setFilter, sort, setSort }) {
       : a.time.localeCompare(b.time)
   );
 
-  const totalDistance = 2500; //needs to change? what's the basis? from and to?
+  const totalDistance = 1500; //needs to change? what's the basis? from and to?
   const totalStops = sortedLandmarks.length; // starting point??
 
   return (
