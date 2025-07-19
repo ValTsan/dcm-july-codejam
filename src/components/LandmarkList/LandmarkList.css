@@ -3,3 +3,7 @@
   flex-direction: column;
   position: relative;
 }
+
+.landmark-list__controls {
+  margin: 25px 0 0;
+}

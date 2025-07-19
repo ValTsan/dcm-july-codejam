@@ -3,7 +3,9 @@ import "./Footer.css";
 function Footer() {
   return (
     <div className="footer">
-      <div className="footer__container"></div>
+      <div className="footer__container">
+        Best Summer Sightseeing Roadtrip {"\u2122"}
+      </div>
     </div>
   );
 }
