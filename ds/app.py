@@ -1,5 +1,3 @@
-
-
 # Import necessary libraries
 import time
 import pandas as pd
@@ -13,24 +11,13 @@ import plotly.graph_objects as go
 from geopy.distance import geodesic
 
 # Load the dataset
-data = pd.read_csv('data.csv')
+data = pd.read_csv('ds/data.csv')
 
 # Extract relevant columns for locations
 locations = data[['name', 'latitude', 'longitude']]
 
 # Create random route
 random_route = locations.sample(frac=1, random_state=7).reset_index(drop=True)
-
-# Compute total distance
-def total_distance(route):
-    distance = 0
-    for i in range(len(route) - 1):
-        start = (route.loc[i]['latitude'], route.loc[i]['longitude'])
-        end = (route.loc[i + 1]['latitude'], route.loc[i + 1]['longitude'])
-        distance += geodesic(start, end).km
-    return distance
-
-baseline_distance = total_distance(random_route)
 
 # Function to calculate the total distance of a route
 def total_distance(route):
@@ -40,6 +27,8 @@ def total_distance(route):
         end = (route.iloc[i + 1]['latitude'], route.iloc[i + 1]['longitude'])
         distance += geodesic(start, end).km
     return distance
+
+baseline_distance = total_distance(random_route)
 
 # Function to calculate the optimized route using the nearest neighbor algorithm
 def nearest_neighbor(locations):
@@ -95,7 +84,6 @@ fig.add_trace(go.Scattergeo(
     marker=dict(size=8, color='blue'),
     name=f'Baseline (Distance: {baseline_distance:.0f} km)',
     line=dict(color='blue', width=2),
-    mark=dict(size=8, color='blue', symbol='circle')
 ))
 
 # Plot optimized route
