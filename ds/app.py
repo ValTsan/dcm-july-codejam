@@ -109,6 +109,19 @@ fig.update_layout(
     margin={"r":0,"t":50,"l":0,"b":0}
 )
 
+fig.update_layout(
+    title=f"Route Optimization Visualization<br><sub>Time to calculate optimized route: {duration:.2f} seconds</sub>",
+    geo=dict(
+        scope='usa',  
+        projection_type='albers usa', 
+        showland=True,
+        landcolor='rgb(243, 243, 243)',
+        countrycolor='rgb(204, 204, 204)'
+    ),
+    legend=dict(x=0.01, y=0.99),
+    margin={"r":0,"t":50,"l":0,"b":0}
+)
+
 # Show interactive map
 fig.show()
 
