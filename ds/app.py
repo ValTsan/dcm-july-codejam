@@ -1,11 +1,10 @@
 import time
-import folium
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from geopy.distance import geodesic
-import os
-import webbrowser
+from dash import Dash, dcc, html
+import dash_bootstrap_components as dbc
 
 # Load the dataset
 data = pd.read_csv('ds/data.csv')
@@ -66,45 +65,12 @@ route, distance, duration = nearest_neighbor(locations)
 random_route['type'] = 'Random Route'
 route['type'] = 'Optimized Route'
 
-# Plotly: visualize both routes on map
-fig = go.Figure()
+# Initialize the Dash app with Bootstrap theme
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-# Random route trace (blue)
-fig.add_trace(go.Scattergeo(
-    lon=random_route['longitude'],
-    lat=random_route['latitude'],
-    mode='markers+lines',
-    marker=dict(size=6, color='blue'),
-    line=dict(color='blue', width=2),
-    name=f'Random Route (Distance: {baseline_distance:.0f} km)'
-))
+# Assuming `random_route`, `route`, `locations`, `baseline_distance`, `distance`, and `duration` are already defined
 
-# Optimized route trace (green)
-fig.add_trace(go.Scattergeo(
-    lon=route['longitude'],
-    lat=route['latitude'],
-    mode='markers+lines',
-    marker=dict(size=6, color='green'),
-    line=dict(color='green', width=3),
-    name=f'Optimized Route (Distance: {distance:.0f} km)'
-))
-
-fig.update_layout(
-    title=f"Route Optimization Visualization<br><sub>Calculation time: {duration:.2f} seconds</sub>",
-    geo=dict(
-        scope='usa',
-        projection_type='albers usa',
-        showland=True,
-        landcolor='rgb(243, 243, 243)',
-        countrycolor='rgb(204, 204, 204)'
-    ),
-    legend=dict(x=0.01, y=0.99),
-    margin={"r":0,"t":50,"l":0,"b":0}
-)
-
-fig.show()
-
-# Plot distances per leg of optimized route as bar chart
+# Calculate leg distances for bar chart
 leg_dists = []
 for i in range(len(route) - 1):
     start = (route.iloc[i]['latitude'], route.iloc[i]['longitude'])
@@ -114,73 +80,80 @@ for i in range(len(route) - 1):
 
 legs_df = pd.DataFrame(leg_dists)
 
-fig2 = px.bar(
-    legs_df,
-    x='Leg',
-    y='Distance_km',
-    hover_data={'Distance_km': ':.1f'},
-    labels={'Distance_km': 'Distance (km)'},
-    title='Optimized Route: Distance per Leg'
-)
+app.layout = dbc.Container([
+    dbc.Row([
+        dbc.Col(
+            dbc.Card(
+                dbc.CardBody([
+                    html.H1("Route Optimization Dashboard", className="text-center mb-4"),
+                    html.Hr()
+                ])
+            ),
+            width=12
+        )
+    ]),
 
-fig2.update_layout(xaxis_tickangle=-45, margin=dict(t=60, b=150))
-fig2.show()
+    # Bar Chart (Distance per leg)
+    dbc.Row([
+        dbc.Col(
+            dcc.Graph(
+                id='distance-bar-chart',
+                figure=px.bar(
+                    legs_df,
+                    x='Leg',
+                    y='Distance_km',
+                    hover_data={'Distance_km': ':.1f'},
+                    labels={'Distance_km': 'Distance (km)'},
+                    title='Optimized Route: Distance per Leg'
+                ).update_layout(
+                    xaxis_tickangle=-45,
+                    margin=dict(t=60, b=150)
+                )
+            ),
+            width=12
+        )
+    ]),
 
-# Folium map centered on USA
-map_center = [39.8283, -98.5795]  # USA geographic center
-map = folium.Map(location=map_center, zoom_start=5, tiles='CartoDB positron')
+    # Maplibre-style map
+    dbc.Row([
+        dbc.Col(
+            dcc.Graph(
+                id='maplibre-map',
+                figure=go.Figure([
+                    go.Scattermapbox(
+                        lat=locations['latitude'],
+                        lon=locations['longitude'],
+                        mode='markers',
+                        marker=go.scattermapbox.Marker(size=10, color='blue'),
+                        text=locations['name'],
+                        name='Locations'
+                    ),
+                    go.Scattermapbox(
+                        lat=route['latitude'].tolist() + [route['latitude'].iloc[0]],
+                        lon=route['longitude'].tolist() + [route['longitude'].iloc[0]],
+                        mode='lines+markers+text',
+                        marker=dict(size=7, color='red'),
+                        line=dict(width=2, color='red'),
+                        text=route['name'],
+                        textposition="top right",
+                        name='Optimized Route'
+                    )
+                ]).update_layout(
+                    title=f"Optimized Route Map<br><sub>Initial Distance: {baseline_distance:.2f} km | "
+                          f"Optimized Distance: {distance:.2f} km | Computation Time: {duration:.2f} sec</sub>",
+                    hovermode='closest',
+                    mapbox=dict(
+                        style='open-street-map',
+                        center=dict(lat=locations['latitude'].mean(), lon=locations['longitude'].mean()),
+                        zoom=4
+                    ),
+                    margin=dict(t=60, b=60)
+                )
+            ),
+            width=12
+        )
+    ])
+], fluid=True, className="mt-4")
 
-# Add random route in blue
-folium.PolyLine(
-    random_route[['latitude', 'longitude']].values,
-    color='blue',
-    weight=3,
-    opacity=0.6,
-    tooltip='Random Route'
-).add_to(map)
-
-# Add optimized route in green
-folium.PolyLine(
-    route[['latitude', 'longitude']].values,
-    color='green',
-    weight=5,
-    opacity=0.8,
-    tooltip='Optimized Route'
-).add_to(map)
-
-# Add markers for optimized route stops
-for idx, row in route.iterrows():
-    folium.Marker(
-        location=[row['latitude'], row['longitude']],
-        popup=row['name'],
-        tooltip=f"Optimized Stop {idx + 1}",
-        icon=folium.Icon(color='green', icon='flag')
-    ).add_to(map)
-
-# Add markers for random route stops
-for idx, row in random_route.iterrows():
-    folium.CircleMarker(
-        location=[row['latitude'], row['longitude']],
-        radius=4,
-        color='blue',
-        fill=True,
-        fill_color='blue',
-        fill_opacity=0.6,
-        popup=row['name'],
-        tooltip=f"Random Stop {idx + 1}"
-    ).add_to(map)
-
-# Add info marker for optimized route distance and time at center of optimized route
-info = f"Optimized Distance: {distance:.2f} km<br>Calculation Time: {duration:.2f} s"
-route_center = [route['latitude'].mean(), route['longitude'].mean()]
-
-folium.Marker(
-    location=route_center,
-    popup=folium.Popup(info, max_width=300),
-    icon=folium.Icon(color='blue', icon='info-sign')
-).add_to(map)
-
-# Save and open the Folium map
-map_file = "route_map.html"
-map.save(map_file)
-webbrowser.open(f"file://{os.path.abspath(map_file)}")
+if __name__ == '__main__':
+    app.run(debug=True)
