@@ -2,4 +2,6 @@
   margin-top: 100px;
   display: flex;
   justify-content: center;
+  background: linear-gradient(90deg, #ff6a00 0%, #ff9500 100%);
+  padding: 20px 60px;
 }

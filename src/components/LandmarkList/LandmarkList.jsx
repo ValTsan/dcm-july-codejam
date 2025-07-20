@@ -125,10 +125,6 @@ function LandmarkList({ filter, setFilter, sort, setSort }) {
           <LandmarkCard key={index} landmark={landmark} />
         ))}
       </div>
-      <div className="landmark-list__trip-summary">
-        <p>Total Distance: {totalDistance} miles</p>
-        <p>Number of Stops: {totalStops}</p>
-      </div>
     </div>
   );
 }
