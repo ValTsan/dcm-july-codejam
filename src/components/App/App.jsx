@@ -17,13 +17,13 @@ function App() {
     <div className="container">
       <Header />
       <Main />
-      <Map
+      {/* <Map
         startPark={startPark}
         filter={filter}
         setFilter={setFilter}
         sort={sort}
         setSort={setSort}
-      />
+      /> */}
       <LandmarkList
         startPark={startPark}
         filter={filter}

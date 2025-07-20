@@ -1,14 +1,39 @@
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 10px 0;
+  background-color: #ede5de;
+  color: #000;
+  position: sticky;
+  top: 0;
+  z-index: 99999;
+}
+
+.header__navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   width: 100%;
-  text-align: center;
+  height: 110px;
+  gap: 12px;
 }
 
 .header__title {
-  /* font-family: "Bitcount Grid Single"; */
-  font-family: "ShareTech Regular";
-  font-size: 40px;
+  font-family: "StingerFit Regular";
+  font-size: 25px;
   color: #333;
   margin: 0;
-  text-transform: uppercase;
   letter-spacing: 2px;
+}
+
+.header__logo {
+  position: relative;
+  max-width: 235px;
+  width: 100%;
+  margin: 0;
+  left: 0;
 }
