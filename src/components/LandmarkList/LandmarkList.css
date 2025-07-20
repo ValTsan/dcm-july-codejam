@@ -8,6 +8,10 @@
   margin: 25px 0 0;
 }
 
+.landmark-list__filter {
+  margin-right: 8px;
+}
+
 .landmark-list__card-scroll {
   display: flex;
   flex-wrap: wrap;
