@@ -6,7 +6,7 @@
   height: 100vh;
   z-index: 0; */
   /* position: fixed; */
-  height: 600px;
+  height: 500px;
   width: 100%;
   border-radius: 5px;
   overflow: hidden;
@@ -16,20 +16,4 @@
   font-size: 50px;
   color: #ffcc00;
   text-shadow: 2px 2px 4px #000;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0) rotate(-15deg);
-  }
-  50% {
-    transform: translateY(-10px) rotate(-15deg);
-  }
-}
-
-@media (max-width: 768px) {
-  .map-container {
-    height: 250px;
-  }
 }
