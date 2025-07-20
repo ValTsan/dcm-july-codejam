@@ -157,3 +157,20 @@ app.layout = dbc.Container([
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+cumulative = np.cumsum(legs_df['Distance_km'])
+fig_cumulative = go.Figure()
+fig_cumulative.add_trace(go.Scatter(
+    x=legs_df['Leg'],
+    y=cumulative,
+    mode="lines+markers",
+    line=dict(width=3),
+    marker=dict(size=8)
+))
+fig_cumulative.update_layout(
+    title="Cumulative Distance by Stop",
+    xaxis_title="Leg",
+    yaxis_title="Distance (km)",
+    margin=dict(l=40, r=20, t=40, b=40)
+)    
