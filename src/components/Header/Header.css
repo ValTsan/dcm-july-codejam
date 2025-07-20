@@ -1,39 +1,38 @@
 .header {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 10px 10px 0;
-  background-color: #ede5de;
-  color: #000;
-  position: sticky;
+  padding: 10px;
+  background: linear-gradient(90deg, #ff6a00 0%, #ff9500 100%);
+  color: #ffffff;
+  position: relative;
   top: 0;
   z-index: 99999;
+  border-radius: 2%;
 }
 
 .header__navbar {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   padding: 0;
-
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   width: 100%;
-  height: 110px;
+  height: 150px;
   gap: 12px;
 }
 
 .header__title {
-  font-family: "StingerFit Regular";
-  font-size: 25px;
-  color: #333;
+  font-family: "Montserrat";
+  font-size: 40px;
+  color: #ffffff;
   margin: 0;
+  padding: 15px 10px;
   letter-spacing: 2px;
 }
-
-.header__logo {
-  position: relative;
-  max-width: 235px;
-  width: 100%;
-  margin: 0;
-  left: 0;
+.header__subtitle {
+  font-family: "Montserrat";
+  font-size: 20px;
+  margin: 0 20px 20px;
 }
