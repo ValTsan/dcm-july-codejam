@@ -1,7 +1,14 @@
-import "./Main.css";
+import { useState } from "react";
 import Select from "react-select";
 
-function Main({}) {
+import "./Main.css";
+import DefaultMap from "../DefaultMap/DefaultMap";
+import LandmarkList from "../LandmarkList/LandmarkList";
+
+function Main() {
+  const [filter, setFilter] = useState("all");
+  const [sort, setSort] = useState("popularity");
+
   return (
     <div className="main">
       <div className="main__content">
@@ -44,8 +51,12 @@ function Main({}) {
           <div className="main__filters-controls">
             <div>
               <label className="main__filters-label">Sort By</label>
-              <select className="main__filters-select">
-                <option>Popularity</option>
+              <select
+                className="main__filters-select"
+                value={sort}
+                onChange={(e) => setSort(e.target.value)}
+              >
+                <option value="popularity">Popularity</option>
                 <option>Rating</option>
                 <option>Alphabetical</option>
               </select>
