@@ -124,6 +124,23 @@ fig.update_layout(
 )
 
 # Show interactive map
-fig.show()
 
+leg_dists = []
+for i in range(len(route) - 1):
+    start = (route.iloc[i]['latitude'], route.iloc[i]['longitude'])
+    end   = (route.iloc[i + 1]['latitude'], route.iloc[i + 1]['longitude'])
+    d     = geodesic(start, end).km
+    leg_dists.append({'Leg': f"{route.iloc[i]['name']} → {route.iloc[i+1]['name']}",'Distance_km': d})
 
+legs_df = pd.DataFrame(leg_dists)
+fig2 = px.bar(
+    legs_df,
+    x='Leg',
+    y='Distance_km',
+    hover_data={'Distance_km': ':.1f'},
+    labels={'Distance_km': 'Distance (km)'},
+    title='Optimized Route: Distance per Leg'
+)
+
+fig2.update_layout(xaxis_tickangle=-45, margin=dict(t=60, b=150),)
+fig2.show()
