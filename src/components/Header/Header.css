@@ -1,4 +1,5 @@
 .header {
+<<<<<<< HEAD
   position: fixed;
   top: 0;
   left: 0;
@@ -15,15 +16,38 @@
   font-variation-settings: "wght" 240;
   letter-spacing: -0.04em;
   margin-bottom: 15px;
+=======
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(90deg, #ff6a00 0%, #ff9500 100%);
+  color: #ffffff;
+  position: relative;
+  top: 0;
+  z-index: 99999;
+  border-radius: 2%;
+}
+
+.header__navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  height: 150px;
+  gap: 12px;
+>>>>>>> main
 }
 
 .header__title {
-  /* font-family: "Bitcount Grid Single"; */
-  font-family: "ShareTech Regular";
+  font-family: "Montserrat";
   font-size: 40px;
-  color: #333;
+  color: #ffffff;
   margin: 0;
-  text-transform: uppercase;
+  padding: 15px 10px;
   letter-spacing: 2px;
   display: flex;
   justify-content: center;
@@ -42,4 +66,9 @@
 .header__nav-list {
   cursor: pointer;
   padding: 10px;
+}
+.header__subtitle {
+  font-family: "Montserrat";
+  font-size: 20px;
+  margin: 0 20px 20px;
 }

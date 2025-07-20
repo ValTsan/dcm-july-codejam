@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_3867501cd833a1819c7ceb9ea617e2d9 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_3867501cd833a1819c7ceb9ea617e2d9" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_3867501cd833a1819c7ceb9ea617e2d9 = L.map(
+                "map_3867501cd833a1819c7ceb9ea617e2d9",
+                {
+                    center: [39.8283, -98.5795],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_148ece7c03692016ecd4512b9db4ce3f = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_148ece7c03692016ecd4512b9db4ce3f.addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+            var poly_line_429def1f1a17f93c13bc59c4103495a0 = L.polyline(
+                [[43.1, -79.04], [35.65, -83.51], [36.11, -112.11], [44.43, -110.59], [37.87, -119.54], [37.82, -122.48], [38.73, -109.59], [37.3, -113.03], [40.69, -74.04], [43.88, -103.46]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.6, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+            poly_line_429def1f1a17f93c13bc59c4103495a0.bindTooltip(
+                `<div>
+                     Random Route
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_ebeccef348147eee4f78117e31ef6d56 = L.polyline(
+                [[36.11, -112.11], [37.3, -113.03], [38.73, -109.59], [44.43, -110.59], [43.88, -103.46], [37.87, -119.54], [37.82, -122.48], [35.65, -83.51], [43.1, -79.04], [40.69, -74.04]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+            poly_line_ebeccef348147eee4f78117e31ef6d56.bindTooltip(
+                `<div>
+                     Optimized Route
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_046324fe40179663490d9c47d5a09198 = L.marker(
+                [36.11, -112.11],
+                {
+}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+            var icon_8a99a771168b55c65f88bb52a59803d7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ac0de42e893cad387ecbb71ffe388a4d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_655bdadf261a429de867553e519c1ef7 = $(`<div id="html_655bdadf261a429de867553e519c1ef7" style="width: 100.0%; height: 100.0%;">Grand Canyon National Park</div>`)[0];
+                popup_ac0de42e893cad387ecbb71ffe388a4d.setContent(html_655bdadf261a429de867553e519c1ef7);
+            
+        
+
+        marker_046324fe40179663490d9c47d5a09198.bindPopup(popup_ac0de42e893cad387ecbb71ffe388a4d)
+        ;
+
+        
+    
+    
+            marker_046324fe40179663490d9c47d5a09198.bindTooltip(
+                `<div>
+                     Optimized Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_046324fe40179663490d9c47d5a09198.setIcon(icon_8a99a771168b55c65f88bb52a59803d7);
+            
+    
+            var marker_99b3a0a85a83d73a82c8f1f94368a937 = L.marker(
+                [37.3, -113.03],
+                {
+}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+            var icon_f9b6f0df3f3f64218ec11b4d7a090f30 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0b27b36c6907fd152e7146a21b1e0094 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2a55b5dabda09a197471fcf88f691a77 = $(`<div id="html_2a55b5dabda09a197471fcf88f691a77" style="width: 100.0%; height: 100.0%;">Zion National Park</div>`)[0];
+                popup_0b27b36c6907fd152e7146a21b1e0094.setContent(html_2a55b5dabda09a197471fcf88f691a77);
+            
+        
+
+        marker_99b3a0a85a83d73a82c8f1f94368a937.bindPopup(popup_0b27b36c6907fd152e7146a21b1e0094)
+        ;
+
+        
+    
+    
+            marker_99b3a0a85a83d73a82c8f1f94368a937.bindTooltip(
+                `<div>
+                     Optimized Stop 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_99b3a0a85a83d73a82c8f1f94368a937.setIcon(icon_f9b6f0df3f3f64218ec11b4d7a090f30);
+            
+    
+            var marker_64fb8ccf41498ccc9079d2b40f98538e = L.marker(
+                [38.73, -109.59],
+                {
+}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+            var icon_3cac536fdedb886f2c5ca257d9292530 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_75e14bd54706324168773a830f33980e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2b23e95fb6fd0f0fc5fb76be5080e52f = $(`<div id="html_2b23e95fb6fd0f0fc5fb76be5080e52f" style="width: 100.0%; height: 100.0%;">Arches National Park</div>`)[0];
+                popup_75e14bd54706324168773a830f33980e.setContent(html_2b23e95fb6fd0f0fc5fb76be5080e52f);
+            
+        
+
+        marker_64fb8ccf41498ccc9079d2b40f98538e.bindPopup(popup_75e14bd54706324168773a830f33980e)
+        ;
+
+        
+    
+    
+            marker_64fb8ccf41498ccc9079d2b40f98538e.bindTooltip(
+                `<div>
+                     Optimized Stop 6
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_64fb8ccf41498ccc9079d2b40f98538e.setIcon(icon_3cac536fdedb886f2c5ca257d9292530);
+            
+    
+            var marker_fc209fa179d85ad2b6167eee90efe547 = L.marker(
+                [44.43, -110.59],
+                {
+}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+            var icon_092f21ef21fefa978d3cecd9b5dc5665 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_214b191d6f962250e893ae216c42f766 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bfd1e609a61b55148d15ad1d5a7b2d6e = $(`<div id="html_bfd1e609a61b55148d15ad1d5a7b2d6e" style="width: 100.0%; height: 100.0%;">Yellowstone National Park</div>`)[0];
+                popup_214b191d6f962250e893ae216c42f766.setContent(html_bfd1e609a61b55148d15ad1d5a7b2d6e);
+            
+        
+
+        marker_fc209fa179d85ad2b6167eee90efe547.bindPopup(popup_214b191d6f962250e893ae216c42f766)
+        ;
+
+        
+    
+    
+            marker_fc209fa179d85ad2b6167eee90efe547.bindTooltip(
+                `<div>
+                     Optimized Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fc209fa179d85ad2b6167eee90efe547.setIcon(icon_092f21ef21fefa978d3cecd9b5dc5665);
+            
+    
+            var marker_323423f33a2f777c139a00a91b21a648 = L.marker(
+                [43.88, -103.46],
+                {
+}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+            var icon_1e6ffbbbcebe4b4091453568f74e4120 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_140459d4eb62a2c03d58dc8c421f944e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_74e492c4fdfc315ca1d44fdefbb84474 = $(`<div id="html_74e492c4fdfc315ca1d44fdefbb84474" style="width: 100.0%; height: 100.0%;">Mount Rushmore</div>`)[0];
+                popup_140459d4eb62a2c03d58dc8c421f944e.setContent(html_74e492c4fdfc315ca1d44fdefbb84474);
+            
+        
+
+        marker_323423f33a2f777c139a00a91b21a648.bindPopup(popup_140459d4eb62a2c03d58dc8c421f944e)
+        ;
+
+        
+    
+    
+            marker_323423f33a2f777c139a00a91b21a648.bindTooltip(
+                `<div>
+                     Optimized Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_323423f33a2f777c139a00a91b21a648.setIcon(icon_1e6ffbbbcebe4b4091453568f74e4120);
+            
+    
+            var marker_28770e6edd157ea0bae03531b59fb781 = L.marker(
+                [37.87, -119.54],
+                {
+}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+            var icon_11b21ad2505480f6187bb22d84e81ff3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bd2bc890d364f81d525749ac9b88b91f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_05abbac0939584e13bbbc0019334253e = $(`<div id="html_05abbac0939584e13bbbc0019334253e" style="width: 100.0%; height: 100.0%;">Yosemite National Park</div>`)[0];
+                popup_bd2bc890d364f81d525749ac9b88b91f.setContent(html_05abbac0939584e13bbbc0019334253e);
+            
+        
+
+        marker_28770e6edd157ea0bae03531b59fb781.bindPopup(popup_bd2bc890d364f81d525749ac9b88b91f)
+        ;
+
+        
+    
+    
+            marker_28770e6edd157ea0bae03531b59fb781.bindTooltip(
+                `<div>
+                     Optimized Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_28770e6edd157ea0bae03531b59fb781.setIcon(icon_11b21ad2505480f6187bb22d84e81ff3);
+            
+    
+            var marker_f0ace1e70513cdfba2575319461bde06 = L.marker(
+                [37.82, -122.48],
+                {
+}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+            var icon_eb9d4b2614c7454ebbc60d00f5706778 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6f033270c8847343d3f2209e47ca6211 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_de6cd5a4897186c2fb0f7b5b0807edb9 = $(`<div id="html_de6cd5a4897186c2fb0f7b5b0807edb9" style="width: 100.0%; height: 100.0%;">Golden Gate Bridge</div>`)[0];
+                popup_6f033270c8847343d3f2209e47ca6211.setContent(html_de6cd5a4897186c2fb0f7b5b0807edb9);
+            
+        
+
+        marker_f0ace1e70513cdfba2575319461bde06.bindPopup(popup_6f033270c8847343d3f2209e47ca6211)
+        ;
+
+        
+    
+    
+            marker_f0ace1e70513cdfba2575319461bde06.bindTooltip(
+                `<div>
+                     Optimized Stop 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f0ace1e70513cdfba2575319461bde06.setIcon(icon_eb9d4b2614c7454ebbc60d00f5706778);
+            
+    
+            var marker_902b60c5db4d3a0fa52c51eb270f45c4 = L.marker(
+                [35.65, -83.51],
+                {
+}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+            var icon_53925a2f5c7cfe1882c3b14b0351f8b1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9879223b0e87e0d9dc37cf976ca2fd10 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1f91e851dfd1623c419a2f0733546977 = $(`<div id="html_1f91e851dfd1623c419a2f0733546977" style="width: 100.0%; height: 100.0%;">Great Smoky Mountains</div>`)[0];
+                popup_9879223b0e87e0d9dc37cf976ca2fd10.setContent(html_1f91e851dfd1623c419a2f0733546977);
+            
+        
+
+        marker_902b60c5db4d3a0fa52c51eb270f45c4.bindPopup(popup_9879223b0e87e0d9dc37cf976ca2fd10)
+        ;
+
+        
+    
+    
+            marker_902b60c5db4d3a0fa52c51eb270f45c4.bindTooltip(
+                `<div>
+                     Optimized Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_902b60c5db4d3a0fa52c51eb270f45c4.setIcon(icon_53925a2f5c7cfe1882c3b14b0351f8b1);
+            
+    
+            var marker_1dcfe59c3e7851dfcd82d4400411e470 = L.marker(
+                [43.1, -79.04],
+                {
+}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+            var icon_a65b668b84e18d85e6fcbcd711b2d559 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0ceb28544e86d9ab989384d2b107948c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9c7a1c1d9dff6d013c6711d32738aa4d = $(`<div id="html_9c7a1c1d9dff6d013c6711d32738aa4d" style="width: 100.0%; height: 100.0%;">Niagara Falls</div>`)[0];
+                popup_0ceb28544e86d9ab989384d2b107948c.setContent(html_9c7a1c1d9dff6d013c6711d32738aa4d);
+            
+        
+
+        marker_1dcfe59c3e7851dfcd82d4400411e470.bindPopup(popup_0ceb28544e86d9ab989384d2b107948c)
+        ;
+
+        
+    
+    
+            marker_1dcfe59c3e7851dfcd82d4400411e470.bindTooltip(
+                `<div>
+                     Optimized Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1dcfe59c3e7851dfcd82d4400411e470.setIcon(icon_a65b668b84e18d85e6fcbcd711b2d559);
+            
+    
+            var marker_493d0397be11bec10e152555a65843ce = L.marker(
+                [40.69, -74.04],
+                {
+}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+            var icon_f33709531360196543e1ea520b32d272 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5c89ee885334f765662a48a60ac6a7f0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_15f21bb8be45a78c3ca811d058784445 = $(`<div id="html_15f21bb8be45a78c3ca811d058784445" style="width: 100.0%; height: 100.0%;">Statue of Liberty</div>`)[0];
+                popup_5c89ee885334f765662a48a60ac6a7f0.setContent(html_15f21bb8be45a78c3ca811d058784445);
+            
+        
+
+        marker_493d0397be11bec10e152555a65843ce.bindPopup(popup_5c89ee885334f765662a48a60ac6a7f0)
+        ;
+
+        
+    
+    
+            marker_493d0397be11bec10e152555a65843ce.bindTooltip(
+                `<div>
+                     Optimized Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_493d0397be11bec10e152555a65843ce.setIcon(icon_f33709531360196543e1ea520b32d272);
+            
+    
+            var circle_marker_fc06b2dc69da8c3262350c8c029969ee = L.circleMarker(
+                [43.1, -79.04],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+        var popup_984a55bebb9725ddbb9f924bdc3fdfa3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c0e2a0d15d6f60e0f3bbee35abb2fc46 = $(`<div id="html_c0e2a0d15d6f60e0f3bbee35abb2fc46" style="width: 100.0%; height: 100.0%;">Niagara Falls</div>`)[0];
+                popup_984a55bebb9725ddbb9f924bdc3fdfa3.setContent(html_c0e2a0d15d6f60e0f3bbee35abb2fc46);
+            
+        
+
+        circle_marker_fc06b2dc69da8c3262350c8c029969ee.bindPopup(popup_984a55bebb9725ddbb9f924bdc3fdfa3)
+        ;
+
+        
+    
+    
+            circle_marker_fc06b2dc69da8c3262350c8c029969ee.bindTooltip(
+                `<div>
+                     Random Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_436f38b544d9dc5b87d6982128b73074 = L.circleMarker(
+                [35.65, -83.51],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+        var popup_6b3be882eab966906ce68c2147edc11a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5c6c29eebdbb9332b1cd63ab75957fa3 = $(`<div id="html_5c6c29eebdbb9332b1cd63ab75957fa3" style="width: 100.0%; height: 100.0%;">Great Smoky Mountains</div>`)[0];
+                popup_6b3be882eab966906ce68c2147edc11a.setContent(html_5c6c29eebdbb9332b1cd63ab75957fa3);
+            
+        
+
+        circle_marker_436f38b544d9dc5b87d6982128b73074.bindPopup(popup_6b3be882eab966906ce68c2147edc11a)
+        ;
+
+        
+    
+    
+            circle_marker_436f38b544d9dc5b87d6982128b73074.bindTooltip(
+                `<div>
+                     Random Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3fe5ffad19c84a0dd214ce91eb9191a9 = L.circleMarker(
+                [36.11, -112.11],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+        var popup_c56816f755878b1726b07eb94ed4e973 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7c4a05b49e24ccd271c1cde1d291255f = $(`<div id="html_7c4a05b49e24ccd271c1cde1d291255f" style="width: 100.0%; height: 100.0%;">Grand Canyon National Park</div>`)[0];
+                popup_c56816f755878b1726b07eb94ed4e973.setContent(html_7c4a05b49e24ccd271c1cde1d291255f);
+            
+        
+
+        circle_marker_3fe5ffad19c84a0dd214ce91eb9191a9.bindPopup(popup_c56816f755878b1726b07eb94ed4e973)
+        ;
+
+        
+    
+    
+            circle_marker_3fe5ffad19c84a0dd214ce91eb9191a9.bindTooltip(
+                `<div>
+                     Random Stop 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8957592cbcadc3cb9ed6f3ecbb546b8a = L.circleMarker(
+                [44.43, -110.59],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+        var popup_10640c4ac12d1c325acb077d72b7b73c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_67fd07ce4b60214ff71ee9c6eda1052f = $(`<div id="html_67fd07ce4b60214ff71ee9c6eda1052f" style="width: 100.0%; height: 100.0%;">Yellowstone National Park</div>`)[0];
+                popup_10640c4ac12d1c325acb077d72b7b73c.setContent(html_67fd07ce4b60214ff71ee9c6eda1052f);
+            
+        
+
+        circle_marker_8957592cbcadc3cb9ed6f3ecbb546b8a.bindPopup(popup_10640c4ac12d1c325acb077d72b7b73c)
+        ;
+
+        
+    
+    
+            circle_marker_8957592cbcadc3cb9ed6f3ecbb546b8a.bindTooltip(
+                `<div>
+                     Random Stop 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1f752201a1a85726216686f43a39d0f4 = L.circleMarker(
+                [37.87, -119.54],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+        var popup_f05b426b7c05d564bcbb4d893e7d10ba = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1295f1db7f2dd7925c99c55c54c85831 = $(`<div id="html_1295f1db7f2dd7925c99c55c54c85831" style="width: 100.0%; height: 100.0%;">Yosemite National Park</div>`)[0];
+                popup_f05b426b7c05d564bcbb4d893e7d10ba.setContent(html_1295f1db7f2dd7925c99c55c54c85831);
+            
+        
+
+        circle_marker_1f752201a1a85726216686f43a39d0f4.bindPopup(popup_f05b426b7c05d564bcbb4d893e7d10ba)
+        ;
+
+        
+    
+    
+            circle_marker_1f752201a1a85726216686f43a39d0f4.bindTooltip(
+                `<div>
+                     Random Stop 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_71e0e3f3b957a0c7159bf156804611d0 = L.circleMarker(
+                [37.82, -122.48],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+        var popup_ed2b58e591fa3b1669b67b5b9985b9be = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_acc72732fb93065d10a5fae392d4f7ea = $(`<div id="html_acc72732fb93065d10a5fae392d4f7ea" style="width: 100.0%; height: 100.0%;">Golden Gate Bridge</div>`)[0];
+                popup_ed2b58e591fa3b1669b67b5b9985b9be.setContent(html_acc72732fb93065d10a5fae392d4f7ea);
+            
+        
+
+        circle_marker_71e0e3f3b957a0c7159bf156804611d0.bindPopup(popup_ed2b58e591fa3b1669b67b5b9985b9be)
+        ;
+
+        
+    
+    
+            circle_marker_71e0e3f3b957a0c7159bf156804611d0.bindTooltip(
+                `<div>
+                     Random Stop 6
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_79c743f35fdd2cfd24f2d0e1a200e83b = L.circleMarker(
+                [38.73, -109.59],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+        var popup_1278f06c4b9747224b95c2db1ed812b1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e2e9190b1c6f688cf6fd88723a6c5960 = $(`<div id="html_e2e9190b1c6f688cf6fd88723a6c5960" style="width: 100.0%; height: 100.0%;">Arches National Park</div>`)[0];
+                popup_1278f06c4b9747224b95c2db1ed812b1.setContent(html_e2e9190b1c6f688cf6fd88723a6c5960);
+            
+        
+
+        circle_marker_79c743f35fdd2cfd24f2d0e1a200e83b.bindPopup(popup_1278f06c4b9747224b95c2db1ed812b1)
+        ;
+
+        
+    
+    
+            circle_marker_79c743f35fdd2cfd24f2d0e1a200e83b.bindTooltip(
+                `<div>
+                     Random Stop 7
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_679a5f1aa05e06a4b0e06b3825a269e7 = L.circleMarker(
+                [37.3, -113.03],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+        var popup_2304fb989374704c5e88cd70c9a4c888 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a542b462c929cb5caa7bfbdb4b553eb9 = $(`<div id="html_a542b462c929cb5caa7bfbdb4b553eb9" style="width: 100.0%; height: 100.0%;">Zion National Park</div>`)[0];
+                popup_2304fb989374704c5e88cd70c9a4c888.setContent(html_a542b462c929cb5caa7bfbdb4b553eb9);
+            
+        
+
+        circle_marker_679a5f1aa05e06a4b0e06b3825a269e7.bindPopup(popup_2304fb989374704c5e88cd70c9a4c888)
+        ;
+
+        
+    
+    
+            circle_marker_679a5f1aa05e06a4b0e06b3825a269e7.bindTooltip(
+                `<div>
+                     Random Stop 8
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2d60a2493fdb412b98102aff9b1f4e30 = L.circleMarker(
+                [40.69, -74.04],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+        var popup_650b29cffa27b159c7459ae37c281d2b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b97ceb125881791e341abaf004d6f16a = $(`<div id="html_b97ceb125881791e341abaf004d6f16a" style="width: 100.0%; height: 100.0%;">Statue of Liberty</div>`)[0];
+                popup_650b29cffa27b159c7459ae37c281d2b.setContent(html_b97ceb125881791e341abaf004d6f16a);
+            
+        
+
+        circle_marker_2d60a2493fdb412b98102aff9b1f4e30.bindPopup(popup_650b29cffa27b159c7459ae37c281d2b)
+        ;
+
+        
+    
+    
+            circle_marker_2d60a2493fdb412b98102aff9b1f4e30.bindTooltip(
+                `<div>
+                     Random Stop 9
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_93ec095a014c613d8cb07e2d75731192 = L.circleMarker(
+                [43.88, -103.46],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+        var popup_b3b22a607dd43f527dadb329681b0dc4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6c3946f6f208821fee7bc3f4c69befad = $(`<div id="html_6c3946f6f208821fee7bc3f4c69befad" style="width: 100.0%; height: 100.0%;">Mount Rushmore</div>`)[0];
+                popup_b3b22a607dd43f527dadb329681b0dc4.setContent(html_6c3946f6f208821fee7bc3f4c69befad);
+            
+        
+
+        circle_marker_93ec095a014c613d8cb07e2d75731192.bindPopup(popup_b3b22a607dd43f527dadb329681b0dc4)
+        ;
+
+        
+    
+    
+            circle_marker_93ec095a014c613d8cb07e2d75731192.bindTooltip(
+                `<div>
+                     Random Stop 10
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_eb26d58013bba7282170308d6c91d590 = L.marker(
+                [39.558, -102.73899999999999],
+                {
+}
+            ).addTo(map_3867501cd833a1819c7ceb9ea617e2d9);
+        
+    
+            var icon_8b8e851a619f9a4ff4efffedcfa35957 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1e5f59fa4e1a3e32870046d8a39cdaef = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0d55308165d505e6b3d0fdb7f6953f2d = $(`<div id="html_0d55308165d505e6b3d0fdb7f6953f2d" style="width: 100.0%; height: 100.0%;">Optimized Distance: 8344.50 km<br>Calculation Time: 0.01 s</div>`)[0];
+                popup_1e5f59fa4e1a3e32870046d8a39cdaef.setContent(html_0d55308165d505e6b3d0fdb7f6953f2d);
+            
+        
+
+        marker_eb26d58013bba7282170308d6c91d590.bindPopup(popup_1e5f59fa4e1a3e32870046d8a39cdaef)
+        ;
+
+        
+    
+    
+                marker_eb26d58013bba7282170308d6c91d590.setIcon(icon_8b8e851a619f9a4ff4efffedcfa35957);
+            
+</script>
+</html>
