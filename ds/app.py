@@ -1,5 +1,6 @@
 # Import necessary libraries
 import time
+import folium
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -124,4 +125,5 @@ fig.update_layout(
 
 # Show interactive map
 fig.show()
+
 
