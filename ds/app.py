@@ -1,5 +1,6 @@
 import time
 import pandas as pd
+import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 from geopy.distance import geodesic
@@ -80,6 +81,46 @@ for i in range(len(route) - 1):
 
 legs_df = pd.DataFrame(leg_dists)
 
+# Create cumulative distance and donut chart
+cumulative = np.cumsum(legs_df['Distance_km'])
+fig_cumulative = go.Figure()
+fig_cumulative.add_trace(go.Scatter(
+    x=legs_df['Leg'],
+    y=cumulative,
+    mode="lines+markers",
+    line=dict(width=3),
+    marker=dict(size=8)
+))
+fig_cumulative.update_layout(
+    title="Cumulative Distance by Stop",
+    xaxis_title="Leg",
+    yaxis_title="Distance (km)",
+    margin=dict(l=40, r=20, t=40, b=40))    
+
+
+fig_donut = go.Figure(go.Pie(
+    labels=legs_df['Leg'],
+    values=legs_df['Distance_km'],
+    hole=0.4,
+    sort=False
+))
+fig_donut.update_layout(
+    title="Distance Share per Leg",
+    margin=dict(l=20, r=20, t=40, b=20))
+
+
+improvement = (baseline_distance - distance) / baseline_distance * 100
+
+fig_indicator = go.Figure(go.Indicator(
+    mode="number+delta",
+    value=distance,
+    delta={"reference": baseline_distance, "relative": True, "valueformat": ".0%"},
+    title={"text": "Optimized vs. Baseline<br><span style='font-size:0.7em;color:gray'>Total Distance (km)</span>"},
+    number={"suffix": " km", "font": {"size": 36}},))
+
+fig_indicator.update_layout(margin={"t":50,"b":0,"l":0,"r":0})
+
+# Create the Dash app layout
 app.layout = dbc.Container([
     dbc.Row([
         dbc.Col(
@@ -153,13 +194,19 @@ app.layout = dbc.Container([
             width=12
         )
     ]),
+    
+    dbc.Row([
+        dbc.Col(dcc.Graph(id="distance-indicator", figure=fig_indicator), width=4),
+        dbc.Col(dcc.Graph(id="cumulative-distance-chart", figure=fig_cumulative), width=4),
+        dbc.Col(dcc.Graph(id="distance-donut-chart",       figure=fig_donut),       width=4),
+        ], className="mt-4")
+
 ], fluid=True, className="mt-4")
 
 if __name__ == '__main__':
     app.run(debug=True)
 
-
-cumulative = np.cumsum(legs_df['Distance_km'])
+    cumulative = np.cumsum(legs_df['Distance_km'])
 fig_cumulative = go.Figure()
 fig_cumulative.add_trace(go.Scatter(
     x=legs_df['Leg'],
@@ -197,8 +244,5 @@ fig_indicator = go.Figure(go.Indicator(
 
 fig_indicator.update_layout(margin={"t":50,"b":0,"l":0,"r":0})
 
-dbc.Row([
-    dbc.Col(dcc.Graph(id="distance-indicator", figure=fig_indicator), width=4),
-    dbc.Col(dcc.Graph(id="cumulative-distance-chart", figure=fig_cumulative), width=4),
-    dbc.Col(dcc.Graph(id="distance-donut-chart",       figure=fig_donut),       width=4),
-], className="mt-4")
+
+
