@@ -93,28 +93,7 @@ app.layout = dbc.Container([
         )
     ]),
 
-    # Bar Chart (Distance per leg)
-    dbc.Row([
-        dbc.Col(
-            dcc.Graph(
-                id='distance-bar-chart',
-                figure=px.bar(
-                    legs_df,
-                    x='Leg',
-                    y='Distance_km',
-                    hover_data={'Distance_km': ':.1f'},
-                    labels={'Distance_km': 'Distance (km)'},
-                    title='Optimized Route: Distance per Leg'
-                ).update_layout(
-                    xaxis_tickangle=-45,
-                    margin=dict(t=60, b=150)
-                )
-            ),
-            width=12
-        )
-    ]),
-
-    # Maplibre-style map
+# Maplibre-style map
     dbc.Row([
         dbc.Col(
             dcc.Graph(
@@ -152,7 +131,28 @@ app.layout = dbc.Container([
             ),
             width=12
         )
-    ])
+    ]),
+    
+    # Bar Chart (Distance per leg)
+    dbc.Row([
+        dbc.Col(
+            dcc.Graph(
+                id='distance-bar-chart',
+                figure=px.bar(
+                    legs_df,
+                    x='Leg',
+                    y='Distance_km',
+                    hover_data={'Distance_km': ':.1f'},
+                    labels={'Distance_km': 'Distance (km)'},
+                    title='Optimized Route: Distance per Leg'
+                ).update_layout(
+                    xaxis_tickangle=-45,
+                    margin=dict(t=60, b=150)
+                )
+            ),
+            width=12
+        )
+    ]),
 ], fluid=True, className="mt-4")
 
 if __name__ == '__main__':
