@@ -5,13 +5,14 @@
   align-items: center;
   justify-content: center;
   background-color: #fff;
-  width: 800px;
+  width: 830px;
   border: 2px solid #f97316;
   border-radius: 20px;
   padding: 15px;
   box-shadow: 4px 6px #ffb38a;
   box-sizing: border-box;
-  margin-inline: auto;
+  /* margin-inline: auto; */
+  margin-top: 40px;
 }
 
 .landmark-list__title {

@@ -4,30 +4,37 @@ import mapboxgl from "mapbox-gl";
 import "../App/App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
-import DefaultMap from "../DefaultMap/DefaultMap";
-import CustomDSMap from "../CustomDSMap/CustomDSMap";
 import Map from "../Map/Map";
 import LandmarkList from "../LandmarkList/LandmarkList";
+import LandmarkCard from "../LandmarkCard/LandmarkCard";
 import Footer from "../Footer/Footer";
+import landmarks from "../../utils/landmarks";
 
 function App() {
   const [startPark, setStartPark] = useState("");
-  const [filter, setFilter] = useState("all");
+  const [filters, setFilters] = useState("all");
   const [sort, setSort] = useState("popularity");
+  const [selectedLandmark, setSelectedLandmark] = useState(landmarks[0]);
 
   return (
     <div className="container">
       <Header />
       <Main />
-      <Map />
-      <LandmarkList
-      // startPark={startPark}
-      // filter={filter}
-      // setFilter={setFilter}
-      // sort={sort}
-      // setSort={setSort}
+      <Map
+        filter={filters}
+        setFilters={setFilters}
+        sort={sort}
+        setSort={setSort}
       />
-
+      <LandmarkList
+        startPark={startPark}
+        filter={filters}
+        setFilters={setFilters}
+        sort={sort}
+        setSort={setSort}
+        landmarks={landmarks}
+        onClick={setSelectedLandmark}
+      />
       <Footer />
     </div>
   );
