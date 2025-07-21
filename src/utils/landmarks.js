@@ -1,13 +1,13 @@
-import GrandCanyon from "../../public/Grand Canyon.png";
-import Yosemite from "../../public/Yosemite.png";
-import Yellowstone from "../../public/Yellowstone.png";
-import Zion from "../../public/Zion.png";
-import MountRushmore from "../../public/Mount Rushmore.png";
-import GreatSmokeyMountains from "../../public/Great Smokey Mountains.png";
-import StatueOfLiberty from "../../public/Statue of Liberty.png";
-import Arches from "../../public/Arches.png";
-import NiagaraFalls from "../../public/Niagara Falls.png";
-import GoldenGateBridge from "../../public/Golden Bridge.png";
+import GrandCanyon from "/Grand Canyon.png";
+import Yosemite from "/Yosemite.png";
+import Yellowstone from "/Yellowstone.png";
+import Zion from "/Zion.png";
+import MountRushmore from "/Mount Rushmore.png";
+import GreatSmokeyMountains from "/Great Smokey Mountains.png";
+import StatueOfLiberty from "/Statue of Liberty.png";
+import Arches from "/Arches.png";
+import NiagaraFalls from "/Niagara Falls.png";
+import GoldenGateBridge from "/Golden Bridge.png";
 
 const landmarks = [
   {

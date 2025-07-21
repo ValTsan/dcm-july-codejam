@@ -5,8 +5,9 @@ import "../App/App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Map from "../Map/Map";
-import LandmarkList from "../LandmarkList/LandmarkList";
-import LandmarkCard from "../LandmarkCard/LandmarkCard";
+// import LandmarkList from "../LandmarkList/LandmarkList";
+// import LandmarkCard from "../LandmarkCard/LandmarkCard";
+import BarChart from "../Bar/Bar";
 import Footer from "../Footer/Footer";
 import landmarks from "../../utils/landmarks";
 
@@ -26,7 +27,7 @@ function App() {
         sort={sort}
         setSort={setSort}
       />
-      <LandmarkList
+      {/* <LandmarkList
         startPark={startPark}
         filter={filters}
         setFilters={setFilters}
@@ -34,7 +35,9 @@ function App() {
         setSort={setSort}
         landmarks={landmarks}
         onClick={setSelectedLandmark}
-      />
+      /> */}
+
+      <BarChart />
       <Footer />
     </div>
   );
