@@ -3,7 +3,7 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./DefaultMap.css";
 
-function Map({ startPark, filter, sort }) {
+function DefaultMap({ startPark, filter, sort }) {
   const mapContainer = useRef(null);
 
   useEffect(() => {
@@ -177,4 +177,4 @@ function Map({ startPark, filter, sort }) {
   return <div ref={mapContainer} className="map-container"></div>;
 }
 
-export default Map;
+export default DefaultMap;

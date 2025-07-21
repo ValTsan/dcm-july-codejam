@@ -1,14 +1,13 @@
 .map-container {
   width: 100%;
   height: 500px;
-  border-radius: 1rem;
+  border-radius: 16px;
   border: 2px solid #ff7f2a;
   box-shadow: 0 8px 12px rgba(255, 126, 42, 0.3);
   overflow: hidden;
-  margin: 2rem auto;
+  margin: 32px auto;
   max-width: 1200px;
   position: relative;
-  z-index: 1;
 }
 
 .retro-marker {

@@ -1,9 +1,19 @@
 import { useState } from "react";
 import Select from "react-select";
-
 import "./Main.css";
-import DefaultMap from "../DefaultMap/DefaultMap";
-import LandmarkList from "../LandmarkList/LandmarkList";
+
+const sortOptions = [
+  { value: "popularity", label: "Popularity" },
+  { value: "rating", label: "Rating" },
+  { value: "alphabetical", label: "Alphabetical" },
+];
+
+const timeOptions = [
+  { value: "any", label: "Any Duration" },
+  { value: "gt1", label: "> 1 Hour" },
+  { value: "1to3", label: "1–3 Hours" },
+  { value: "lt3", label: "< 3 Hours" },
+];
 
 function Main() {
   const [filter, setFilter] = useState("all");
@@ -20,16 +30,16 @@ function Main() {
 
           <div className="main__trip-summary-boxes">
             <div className="main__trip-summary-box">
-              <p className="main__trip-summar-label">Total Distance</p>
-              <p className="main__trip-summar-value">1,250 miles</p>
+              <p className="main__trip-summary-label">Total Distance</p>
+              <p className="main__trip-summary-value">1,250 miles</p>
             </div>
             <div className="main__trip-summary-box">
-              <p className="main__trip-summar-label">Number of Stops</p>
-              <p className="main__trip-summar-value">8</p>
+              <p className="main__trip-summary-label">Number of Stops</p>
+              <p className="main__trip-summary-value">8</p>
             </div>
             <div className="main__trip-summary-box">
-              <p className="main__trip-summar-label">Total Duration</p>
-              <p className="main__trip-summar-value">7 days</p>
+              <p className="main__trip-summary-label">Total Duration</p>
+              <p className="main__trip-summary-value">7 days</p>
             </div>
           </div>
         </section>
@@ -51,25 +61,22 @@ function Main() {
           <div className="main__filters-controls">
             <div>
               <label className="main__filters-label">Sort By</label>
-              <select
+              <Select
                 className="main__filters-select"
-                value={sort}
-                onChange={(e) => setSort(e.target.value)}
-              >
-                <option value="popularity">Popularity</option>
-                <option>Rating</option>
-                <option>Alphabetical</option>
-              </select>
+                classNamePrefix="react-select"
+                options={sortOptions}
+                defaultValue={sortOptions[0]}
+              />
             </div>
 
             <div>
               <label className="main__filters-label">Time Required</label>
-              <select className="main__filters-select">
-                <option>Any Duration</option>
-                <option>&gt; 1 Hour</option>
-                <option>1–3 Hours</option>
-                <option>&lt; 3 Hours</option>
-              </select>
+              <Select
+                className="main__filters-select"
+                classNamePrefix="react-select"
+                options={timeOptions}
+                defaultValue={timeOptions[0]}
+              />
             </div>
           </div>
         </section>
