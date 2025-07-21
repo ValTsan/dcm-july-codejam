@@ -215,37 +215,6 @@ dbc.Row([
         dbc.Col(dcc.Graph(id="distance-donut-chart",       figure=fig_donut),       width=4),
         ], className="mt-4"),        
 
-# 5) Mini sparkline bar chart
-fig_spark = px.bar(
-    legs_df, x='Leg', y='Distance_km',
-    height=150, width=300,
-    template="simple_white")
-fig_spark.update_traces(marker_color="#4C78A8")
-fig_spark.update_layout(
-    margin=dict(t=10,b=10,l=10,r=10),
-    xaxis=dict(visible=False),
-    yaxis=dict(visible=False))
-
-
-# 5) Mini sparkline bar chart
-fig_spark = px.bar(
-    legs_df, x='Leg', y='Distance_km',
-    height=150, width=300,
-    template="simple_white")
-fig_spark.update_traces(marker_color="#4C78A8")
-fig_spark.update_layout(
-    margin=dict(t=10,b=10,l=10,r=10),
-    xaxis=dict(visible=False),
-    yaxis=dict(visible=False))
-
-    
-dbc.Row([
-    dbc.Col(dcc.Graph(figure=fig_spark, config={"displayModeBar":False}), width="auto"),
-    dbc.Col(dcc.Graph(figure=fig_gauge, config={"displayModeBar":False}), width="auto"),
-], justify="center", className="my-4")
-
-
-
 ], fluid=True, className="mt-4")
 
 @app.callback(
