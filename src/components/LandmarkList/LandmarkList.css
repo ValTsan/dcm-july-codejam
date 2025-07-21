@@ -47,16 +47,16 @@
   box-shadow: 2px 2px #ffe3d3;
 }
 
-.landmark-list__icon {
-  font-size: 40px;
+.landmark-list__image {
+  width: 123px;
   margin-right: 16px;
 }
 
 .landmark-list__info {
   display: flex;
-  flex-wrap: nowrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .landmark-list__name {

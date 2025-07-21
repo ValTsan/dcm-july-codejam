@@ -1,3 +1,14 @@
+import GrandCanyon from "../../public/Grand Canyon.png";
+import Yosemite from "../../public/Yosemite.png";
+import Yellowstone from "../../public/Yellowstone.png";
+import Zion from "../../public/Zion.png";
+import MountRushmore from "../../public/Mount Rushmore.png";
+import GreatSmokeyMountains from "../../public/Great Smokey Mountains.png";
+import StatueOfLiberty from "../../public/Statue of Liberty.png";
+import Arches from "../../public/Arches.png";
+import NiagaraFalls from "../../public/Niagara Falls.png";
+import GoldenGateBridge from "../../public/Golden Bridge.png";
+
 const landmarks = [
   {
     name: "Grand Canyon National Park",
@@ -6,7 +17,7 @@ const landmarks = [
     state: "California",
     popularity: 92,
     time: "5h",
-    icon: "🏜️",
+    image: GrandCanyon,
   },
   {
     name: "Yosemite National Park",
@@ -15,7 +26,7 @@ const landmarks = [
     state: "Arizona",
     popularity: 90,
     time: "4h",
-    icon: "🏞️",
+    image: Yosemite,
   },
 
   {
@@ -25,7 +36,7 @@ const landmarks = [
     state: "Wyoming",
     popularity: 88,
     time: "6h",
-    icon: "🌄",
+    image: Yellowstone,
   },
   {
     name: "Zion National Park",
@@ -34,7 +45,7 @@ const landmarks = [
     state: "Utah",
     popularity: 85,
     time: "3.5h",
-    icon: "🏔️",
+    image: Zion,
   },
   {
     name: "Mount Rushmore",
@@ -43,7 +54,7 @@ const landmarks = [
     state: "South Dakota",
     popularity: 87,
     time: "4h",
-    icon: "☘️",
+    image: MountRushmore,
   },
   {
     name: "Great Smoky Mountains",
@@ -52,7 +63,7 @@ const landmarks = [
     state: "Tennessee",
     popularity: 89,
     time: "4.5h",
-    icon: "🗻",
+    image: GreatSmokeyMountains,
   },
   {
     name: "Statue of Liberty",
@@ -61,7 +72,7 @@ const landmarks = [
     state: "New York",
     popularity: 83,
     time: "3h",
-    icon: "🗽",
+    image: StatueOfLiberty,
   },
   {
     name: "Arches National Park",
@@ -70,7 +81,7 @@ const landmarks = [
     state: "Utah",
     popularity: 84,
     time: "4h",
-    icon: "🌅",
+    image: Arches,
   },
   {
     name: "Niagara Falls",
@@ -79,7 +90,7 @@ const landmarks = [
     state: "New York",
     popularity: 86,
     time: "5h",
-    icon: "👾",
+    image: NiagaraFalls,
   },
   {
     name: "Golden Gate Bridge",
@@ -88,7 +99,7 @@ const landmarks = [
     state: "California",
     popularity: 82,
     time: "3.5h",
-    icon: "🏔️",
+    image: GoldenGateBridge,
   },
 ];
 
