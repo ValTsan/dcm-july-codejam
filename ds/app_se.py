@@ -120,10 +120,10 @@ bar_fig = px.bar(
     y='Distance_km',
     hover_data={'Distance_km': ':.1f'},
     title='Optimized Route: Distance per Leg',
-    labels={'Distance_km': 'Distance (km)'}
+    labels={'Distance_km': 'Distance (km)'},
 ).update_layout(
     xaxis_tickangle=-45, 
-    margin=dict(t=40, b=150)
+    margin=dict(t=40, b=150),
     )
 
 # Donut Chart (Share per Leg)
@@ -159,7 +159,7 @@ fig_cumulative.add_trace(go.Scatter(
     x=legs_df['Leg'],
     y=cumulative,
     mode="lines+markers",
-    line=dict(width=3),
+    line=dict(width=3, color='orange'),
     marker=dict(size=8)
 ))
 fig_cumulative.update_layout(
