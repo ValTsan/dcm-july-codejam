@@ -2,18 +2,87 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  width: 800px;
+  border: 2px solid #f97316;
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: 4px 6px #ffb38a;
+  box-sizing: border-box;
+  margin-inline: auto;
 }
 
-.landmark-list__controls {
-  margin: 25px 0 0;
+.landmark-list__title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #792008;
+  margin: 5px;
 }
 
-.landmark-list__filter {
-  margin-right: 8px;
+.landmark-list__subtitle {
+  font-size: 16px;
+  color: #b6451d;
+  margin: 5px 5px 14px;
 }
 
 .landmark-list__card-scroll {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  max-height: 600px;
+  width: 100%;
+  overflow-y: auto;
+  padding-right: 8px;
+  gap: 16px;
+}
+
+.landmark-list__card {
+  display: flex;
+  align-items: center;
+  border: 1px solid #f97316;
+  border-radius: 12px;
+  padding: 12px;
+  background-color: #fff;
+  box-shadow: 2px 2px #ffe3d3;
+}
+
+.landmark-list__icon {
+  font-size: 40px;
+  margin-right: 16px;
+}
+
+.landmark-list__info {
+  display: flex;
+  flex-wrap: nowrap;
   justify-content: center;
+  align-items: center;
+}
+
+.landmark-list__name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #792008;
+}
+
+.landmark-list__rating {
+  margin: 4px 0;
+  color: #c25b22;
+}
+.landmark-list__tag {
+  font-size: 12px;
+  background-color: #ffe4ca;
+  color: #924b26;
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+.landmark-list__card-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.landmark-list__card-scroll::-webkit-scrollbar-thumb {
+  background: #ffb38a;
+  border-radius: 4px;
 }

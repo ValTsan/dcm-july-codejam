@@ -51,10 +51,10 @@ function Main() {
             <button className="main__filters-tag main__filters-tag--active">
               All
             </button>
-            <button className="main__filters-tag">Nature</button>
-            <button className="main__filters-tag">Architecture</button>
-            <button className="main__filters-tag">Historical</button>
-            <button className="main__filters-tag">Cultural</button>
+            <button className="main__filters-tag">National Park</button>
+            <button className="main__filters-tag">Natural Wonder</button>
+            <button className="main__filters-tag">Historic Landmark</button>
+            <button className="main__filters-tag">Monument</button>
             <button className="main__filters-tag">Hidden Gems</button>
           </div>
 

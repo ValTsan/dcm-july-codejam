@@ -20,20 +20,12 @@ function App() {
       <Header />
       <Main />
       <Map />
-      {/* <DefaultMap
-        startPark={startPark}
-        filter={filter}
-        setFilter={setFilter}
-        sort={sort}
-        setSort={setSort}
-      />
-      <CustomDSMap /> */}
       <LandmarkList
-        startPark={startPark}
-        filter={filter}
-        setFilter={setFilter}
-        sort={sort}
-        setSort={setSort}
+      // startPark={startPark}
+      // filter={filter}
+      // setFilter={setFilter}
+      // sort={sort}
+      // setSort={setSort}
       />
 
       <Footer />
