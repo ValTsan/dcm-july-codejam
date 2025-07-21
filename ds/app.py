@@ -213,9 +213,21 @@ dbc.Row([
         dbc.Col(dcc.Graph(id="distance-indicator", figure=fig_indicator), width=4),
         dbc.Col(dcc.Graph(id="cumulative-distance-chart", figure=fig_cumulative), width=4),
         dbc.Col(dcc.Graph(id="distance-donut-chart",       figure=fig_donut),       width=4),
-        ], className="mt-4"),        
+        ], className="mt-4"), 
 
-], fluid=True, className="mt-4")
+# Calculate estimated time assuming 60 km/h
+legs_df['Time_h'] = legs_df['Distance_km'] / 60
+
+fig_time = px.bar(
+    legs_df,
+    x='Leg',
+    y='Time_h',
+    hover_data={'Time_h': ':.1f'},
+    labels={'Time_h': 'Time (h)'},
+    title='Estimated Travel Time per Leg'
+).update_layout(
+    xaxis_tickangle=-45,
+    margin=dict(t=40, b=120))], fluid=True, className="mt-4")
 
 @app.callback(
     Output("maplibre-map", "figure"),
@@ -294,4 +306,3 @@ fig_indicator = go.Figure(go.Indicator(
     number={"suffix": " km", "font": {"size": 36}},))
 
 fig_indicator.update_layout(margin={"t":50,"b":0,"l":0,"r":0})
-
