@@ -147,7 +147,46 @@ dbc.Row([
         width={"size": 4, "offset": 4})], className="mb-3"),
 
     # Maplibre‑style map (now populated by callback)
-dbc.Row([dbc.Col(dcc.Graph(id='maplibre-map'), width=12)]),
+# Maplibre-style map
+dbc.Row([
+    dbc.Col(
+        dcc.Graph(
+            id='maplibre-map',
+            figure=go.Figure([
+                go.Scattermapbox(
+                    lat=locations['latitude'],
+                    lon=locations['longitude'],
+                    mode='markers',
+                    marker=go.scattermapbox.Marker(size=10, color='blue'),
+                    text=locations['name'],
+                    name='Locations'
+                ),
+                go.Scattermapbox(
+                    lat=route['latitude'].tolist() + [route['latitude'].iloc[0]],
+                    lon=route['longitude'].tolist() + [route['longitude'].iloc[0]],
+                    mode='lines+markers+text',
+                    marker=dict(size=7, color='red'),
+                    line=dict(width=2, color='red'),
+                    text=route['name'],
+                    textposition="top right",
+                    name='Optimized Route'
+                )
+            ]).update_layout(
+                title=f"Optimized Route Map<br><sub>Initial Distance: {baseline_distance:.2f} km | "
+                      f"Optimized Distance: {distance:.2f} km | Computation Time: {duration:.2f} sec</sub>",
+                hovermode='closest',
+                mapbox=dict(
+                    style='open-street-map',
+                    center=dict(lat=locations['latitude'].mean(), lon=locations['longitude'].mean()),
+                    zoom=4
+                ),
+                margin=dict(t=60, b=60)
+            )
+        ),
+        width=12
+    )
+]),
+
 
     # Bar Chart (Distance per leg)
     dbc.Row([
@@ -180,14 +219,39 @@ dbc.Row([dbc.Col(dcc.Graph(id='maplibre-map'), width=12)]),
 
 @app.callback(
     Output("maplibre-map", "figure"),
-    Input("route-type-dropdown", "value"))
+    Input("route-type-dropdown", "value")
+)
 def update_map(selected):
     df = route if selected == "optimized" else random_route
     fig = go.Figure()
-    
-    fig.add_trace(go.Scattermap(lat=locations.latitude, lon=locations.longitude, mode="markers"))
-    fig.add_trace(go.Scattermap(lat=list(df.latitude)+[df.latitude.iloc[0]], lon=list(df.longitude)+[df.longitude.iloc[0]], mode="lines+markers"))
-    fig.update_layout(maplibre={"style":"open-street-map","center":{"lat":locations.latitude.mean(),"lon":locations.longitude.mean()},"zoom":4}, margin=dict(t=0,b=0,l=0,r=0))
+
+    # Show all points
+    fig.add_trace(go.Scattermapbox(
+        lat=locations['latitude'],
+        lon=locations['longitude'],
+        mode='markers',
+        marker=dict(size=8, color='blue'),
+        name='Locations'
+    ))
+    # Draw the chosen route
+    fig.add_trace(go.Scattermapbox(
+        lat=list(df['latitude']) + [df['latitude'].iloc[0]],
+        lon=list(df['longitude'])+ [df['longitude'].iloc[0]],
+        mode='lines+markers',
+        marker=dict(size=6, color='red'),
+        line=dict(width=2),
+        name=f"{selected.title()} Route"
+    ))
+
+    # Use `mapbox`, not `maplibre`
+    fig.update_layout(
+        mapbox={
+            "style": "open-street-map",
+            "center": {"lat": locations['latitude'].mean(), "lon": locations['longitude'].mean()},
+            "zoom": 4
+        },
+        margin=dict(t=0, b=0, l=0, r=0)
+    )
     return fig
 
 if __name__ == '__main__':
