@@ -40,10 +40,25 @@
   list-style: none;
 }
 
+.header__nav-btn {
+  background-color: transparent;
+  border-style: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: "Montserrat";
+  line-height: 1.5;
+  font-weight: 400;
+}
+
 .header__nav-list {
   cursor: pointer;
   padding: 10px;
   margin: 5px;
+}
+
+.header__nav-link {
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .header__subtitle {

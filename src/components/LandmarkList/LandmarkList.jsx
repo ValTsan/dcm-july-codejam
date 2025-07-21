@@ -85,7 +85,7 @@ function LandmarkList({
               className="landmark-list__image"
             />
 
-            <div className="landmark-list__info">
+            <div className="landmark-list__info" id="trails">
               <h3 className="landmark-list__name">{landmark.name}</h3>
               <p className="landmark-list__rating">
                 ⭐ {landmark.popularity.toLocaleString()}

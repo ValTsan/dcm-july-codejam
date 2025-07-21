@@ -1,0 +1,238 @@
+.modal {
+  visibility: hidden;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+  opacity: 0;
+  transition: visibility 0.6s ease, opacity 0.6s ease;
+}
+
+.modal_is-opened {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal__container {
+  position: relative;
+  margin: auto;
+  max-width: 730px;
+  width: 100%;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 32px 50px;
+  box-sizing: border-box;
+}
+
+.modal__image-container {
+  position: relative;
+  margin: auto;
+  max-width: 730px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  max-width: 90vw;
+}
+
+.modal__close-btn {
+  cursor: pointer;
+  background: transparent url(../images/close.svg) center no-repeat;
+  border-style: none;
+  position: absolute;
+  top: 25px;
+  right: 50px;
+  width: 40px;
+  height: 40px;
+  opacity: 0.4;
+
+  transition: 0.3s;
+
+  padding: 0;
+  margin: 0;
+}
+
+.modal__close-btn:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.modal__title {
+  font-weight: 500;
+  font-size: 32px;
+  margin: 0 0 32px;
+  color: rgba(33, 33, 33, 1);
+  line-height: 1;
+}
+
+.modal__error {
+  display: block;
+  margin-top: 8px;
+  color: red;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__input {
+  display: block;
+  margin: 8px 0 0;
+  width: 100%;
+  font-size: 20px;
+  line-height: 1;
+  height: 52px;
+  border-radius: 8px;
+  border-color: rgba(33, 33, 33, 0.4);
+  outline: none;
+  box-sizing: border-box;
+  padding: 16px 12px;
+}
+
+.modal__input:hover {
+  cursor: pointer;
+  border-color: rgba(33, 33, 33, 1);
+}
+
+.modal__input::placeholder {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 110%;
+  color: rgba(33, 33, 33, 0.3);
+}
+
+.modal__input_state_error {
+  border: 1px solid rgba(255, 0, 0, 0.6);
+}
+
+.modal__label {
+  margin: 0 0 32px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 110%;
+  color: rgba(33, 33, 33, 0.7);
+}
+
+.modal__submit-btn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  border-style: none;
+  align-items: center;
+  border-style: none;
+  margin-left: 0;
+  margin-top: auto;
+  max-width: 156px;
+  height: 52px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1;
+  padding: 18px 32px;
+  gap: 8px;
+  border-radius: 8px;
+  background: rgba(33, 33, 33, 1);
+  color: rgba(252, 245, 229, 1);
+  white-space: nowrap;
+  position: relative;
+}
+
+.modal__submit-btn_disabled {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  border-style: none;
+  align-items: center;
+  border-style: none;
+  margin-left: 0;
+  margin-top: auto;
+  max-width: 156px;
+  height: 52px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1;
+  padding: 18px 32px;
+  gap: 8px;
+  border-radius: 8px;
+  background: rgba(33, 33, 33, 1);
+  color: rgba(252, 245, 229, 1);
+  white-space: nowrap;
+  position: relative;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.modal__submit-btn:hover {
+  opacity: 0.8;
+}
+
+.modal__image {
+  max-width: 80vh;
+  max-height: 80vh;
+  object-fit: contain;
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+
+.modal__container-image {
+  position: relative;
+  background-color: transparent;
+  padding: 0;
+}
+
+.modal__close_type_preview {
+  color: #fff;
+  filter: invert(1);
+  right: -40px;
+  top: -9px;
+}
+
+.modal__close_type_preview:hover {
+  filter: invert(1);
+  opacity: 0.4;
+}
+
+.modal__preview-title {
+  display: inline-block;
+  border-radius: 8px;
+  color: #fff;
+  background-color: #000;
+  padding: 10px;
+  margin: 8px auto;
+  text-align: center;
+}
+
+@media screen and (max-width: 627px) {
+  .modal__container {
+    padding: 12px;
+    margin-top: 134px;
+  }
+
+  .modal__title {
+    font-size: 20px;
+  }
+
+  .modal__form {
+    margin: 24px 0 0 0;
+  }
+  .modal__input {
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .modal__close-btn {
+    top: 10px;
+    right: 2px;
+  }
+
+  .modal__submit-btn {
+    max-width: 100%;
+  }
+
+  .modal__close_type_preview {
+    right: -5px;
+    top: -35px;
+  }
+}
