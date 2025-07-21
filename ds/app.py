@@ -215,6 +215,14 @@ dbc.Row([
         dbc.Col(dcc.Graph(id="distance-donut-chart",       figure=fig_donut),       width=4),
         ], className="mt-4"),        
 
+
+dbc.Row([
+    dbc.Col(dcc.Graph(figure=fig_spark, config={"displayModeBar":False}), width="auto"),
+    dbc.Col(dcc.Graph(figure=fig_gauge, config={"displayModeBar":False}), width="auto"),
+], justify="center", className="my-4")
+
+
+
 ], fluid=True, className="mt-4")
 
 @app.callback(
@@ -318,5 +326,3 @@ fig_gauge = go.Figure(go.Indicator(
 fig_gauge.update_layout(
     height=150, width=300,
     margin=dict(t=10,b=10,l=10,r=10))
-
-
