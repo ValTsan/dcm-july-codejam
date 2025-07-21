@@ -9,8 +9,7 @@
   line-height: 1.5;
   font-weight: 400;
   min-height: 100vh;
-  --grid-bg: radial-gradient(#d0d0d0 0.3px, transparent 0.3px);
-  --grid-size: 10px 10px;
+  background: #fff6ea;
 }
 
 .content-layout {
