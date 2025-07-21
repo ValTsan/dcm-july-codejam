@@ -27,6 +27,9 @@
   border-radius: 20px;
   padding: 15px;
   box-shadow: 4px 6px #ffb38a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   /* margin-top: 15px; */
 }
 
@@ -58,12 +61,12 @@
   text-align: center;
 }
 
-.main__trip-summar-label {
+.main__trip-summary-label {
   color: #b6451d;
   font-size: 17px;
 }
 
-.main__trip-summar-value {
+.main__trip-summary-value {
   font-weight: 700;
   color: #f97316;
   font-size: 24px;
@@ -78,9 +81,14 @@
   padding: 15px;
   box-shadow: 4px 6px #ffb38a;
   margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .main__filters-title {
+  display: flex;
+  justify-content: center;
   font-size: 2rem;
   font-weight: 700;
   color: #792008;
@@ -89,6 +97,7 @@
 
 .main__filters-tags {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 15px;
@@ -119,6 +128,7 @@
 .main__filters-controls {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 32px;
 }
 

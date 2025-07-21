@@ -1,11 +1,11 @@
 import time
-import folium
 import pandas as pd
+import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 from geopy.distance import geodesic
-import os
-import webbrowser
+from dash import Dash, dcc, html, Input, Output
+import dash_bootstrap_components as dbc
 
 # Load the dataset
 data = pd.read_csv('ds/data.csv')
@@ -66,45 +66,12 @@ route, distance, duration = nearest_neighbor(locations)
 random_route['type'] = 'Random Route'
 route['type'] = 'Optimized Route'
 
-# Plotly: visualize both routes on map
-fig = go.Figure()
+# Initialize the Dash app with Bootstrap theme
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-# Random route trace (blue)
-fig.add_trace(go.Scattergeo(
-    lon=random_route['longitude'],
-    lat=random_route['latitude'],
-    mode='markers+lines',
-    marker=dict(size=6, color='blue'),
-    line=dict(color='blue', width=2),
-    name=f'Random Route (Distance: {baseline_distance:.0f} km)'
-))
+# Assuming `random_route`, `route`, `locations`, `baseline_distance`, `distance`, and `duration` are already defined
 
-# Optimized route trace (green)
-fig.add_trace(go.Scattergeo(
-    lon=route['longitude'],
-    lat=route['latitude'],
-    mode='markers+lines',
-    marker=dict(size=6, color='green'),
-    line=dict(color='green', width=3),
-    name=f'Optimized Route (Distance: {distance:.0f} km)'
-))
-
-fig.update_layout(
-    title=f"Route Optimization Visualization<br><sub>Calculation time: {duration:.2f} seconds</sub>",
-    geo=dict(
-        scope='usa',
-        projection_type='albers usa',
-        showland=True,
-        landcolor='rgb(243, 243, 243)',
-        countrycolor='rgb(204, 204, 204)'
-    ),
-    legend=dict(x=0.01, y=0.99),
-    margin={"r":0,"t":50,"l":0,"b":0}
-)
-
-fig.show()
-
-# Plot distances per leg of optimized route as bar chart
+# Calculate leg distances for bar chart
 leg_dists = []
 for i in range(len(route) - 1):
     start = (route.iloc[i]['latitude'], route.iloc[i]['longitude'])
@@ -114,73 +81,153 @@ for i in range(len(route) - 1):
 
 legs_df = pd.DataFrame(leg_dists)
 
-fig2 = px.bar(
-    legs_df,
-    x='Leg',
-    y='Distance_km',
-    hover_data={'Distance_km': ':.1f'},
-    labels={'Distance_km': 'Distance (km)'},
-    title='Optimized Route: Distance per Leg'
-)
+# Create cumulative distance and donut chart
+cumulative = np.cumsum(legs_df['Distance_km'])
+fig_cumulative = go.Figure()
+fig_cumulative.add_trace(go.Scatter(
+    x=legs_df['Leg'],
+    y=cumulative,
+    mode="lines+markers",
+    line=dict(width=3),
+    marker=dict(size=8)
+))
+fig_cumulative.update_layout(
+    title="Cumulative Distance by Stop",
+    xaxis_title="Leg",
+    yaxis_title="Distance (km)",
+    margin=dict(l=40, r=20, t=40, b=40))    
 
-fig2.update_layout(xaxis_tickangle=-45, margin=dict(t=60, b=150))
-fig2.show()
 
-# Folium map centered on USA
-map_center = [39.8283, -98.5795]  # USA geographic center
-map = folium.Map(location=map_center, zoom_start=5, tiles='CartoDB positron')
+fig_donut = go.Figure(go.Pie(
+    labels=legs_df['Leg'],
+    values=legs_df['Distance_km'],
+    hole=0.4,
+    sort=False
+))
+fig_donut.update_layout(
+    title="Distance Share per Leg",
+    margin=dict(l=20, r=20, t=40, b=20))
 
-# Add random route in blue
-folium.PolyLine(
-    random_route[['latitude', 'longitude']].values,
-    color='blue',
-    weight=3,
-    opacity=0.6,
-    tooltip='Random Route'
-).add_to(map)
 
-# Add optimized route in green
-folium.PolyLine(
-    route[['latitude', 'longitude']].values,
-    color='green',
-    weight=5,
-    opacity=0.8,
-    tooltip='Optimized Route'
-).add_to(map)
+improvement = (baseline_distance - distance) / baseline_distance * 100
 
-# Add markers for optimized route stops
-for idx, row in route.iterrows():
-    folium.Marker(
-        location=[row['latitude'], row['longitude']],
-        popup=row['name'],
-        tooltip=f"Optimized Stop {idx + 1}",
-        icon=folium.Icon(color='green', icon='flag')
-    ).add_to(map)
+fig_indicator = go.Figure(go.Indicator(
+    mode="number+delta",
+    value=distance,
+    delta={"reference": baseline_distance, "relative": True, "valueformat": ".0%"},
+    title={"text": "Optimized vs. Baseline<br><span style='font-size:0.7em;color:gray'>Total Distance (km)</span>"},
+    number={"suffix": " km", "font": {"size": 36}},))
 
-# Add markers for random route stops
-for idx, row in random_route.iterrows():
-    folium.CircleMarker(
-        location=[row['latitude'], row['longitude']],
-        radius=4,
-        color='blue',
-        fill=True,
-        fill_color='blue',
-        fill_opacity=0.6,
-        popup=row['name'],
-        tooltip=f"Random Stop {idx + 1}"
-    ).add_to(map)
+fig_indicator.update_layout(margin={"t":50,"b":0,"l":0,"r":0})
 
-# Add info marker for optimized route distance and time at center of optimized route
-info = f"Optimized Distance: {distance:.2f} km<br>Calculation Time: {duration:.2f} s"
-route_center = [route['latitude'].mean(), route['longitude'].mean()]
+# Create the Dash app layout
+app.layout = dbc.Container([
+    dbc.Row([
+        dbc.Col(
+            dbc.Card(
+                dbc.CardBody([
+                    html.H1("Route Optimization Dashboard", className="text-center mb-4"),
+                    html.Hr()
+                ])
+            ),
+            width=12
+        )
+    ]),
 
-folium.Marker(
-    location=route_center,
-    popup=folium.Popup(info, max_width=300),
-    icon=folium.Icon(color='blue', icon='info-sign')
-).add_to(map)
+dbc.Row([
+    dbc.Col(
+        dcc.Dropdown(
+            id="route-type-dropdown",
+            options=[
+                {"label": "Optimized Route", "value": "optimized"},
+                {"label": "Random Route",    "value": "random"}],
+            value="optimized",
+            clearable=False,
+            style={"width": "250px"}),
+        width={"size": 4, "offset": 4})], className="mb-3"),
 
-# Save and open the Folium map
-map_file = "route_map.html"
-map.save(map_file)
-webbrowser.open(f"file://{os.path.abspath(map_file)}")
+    # Maplibre‑style map (now populated by callback)
+dbc.Row([dbc.Col(dcc.Graph(id='maplibre-map'), width=12)]),
+
+    # Bar Chart (Distance per leg)
+    dbc.Row([
+        dbc.Col(
+            dcc.Graph(
+                id='distance-bar-chart',
+                figure=px.bar(
+                    legs_df,
+                    x='Leg',
+                    y='Distance_km',
+                    hover_data={'Distance_km': ':.1f'},
+                    labels={'Distance_km': 'Distance (km)'},
+                    title='Optimized Route: Distance per Leg'
+                ).update_layout(
+                    xaxis_tickangle=-45,
+                    margin=dict(t=60, b=150)
+                )
+            ),
+            width=12
+        )
+    ]), 
+     
+    dbc.Row([
+        dbc.Col(dcc.Graph(id="distance-indicator", figure=fig_indicator), width=4),
+        dbc.Col(dcc.Graph(id="cumulative-distance-chart", figure=fig_cumulative), width=4),
+        dbc.Col(dcc.Graph(id="distance-donut-chart",       figure=fig_donut),       width=4),
+        ], className="mt-4"),        
+
+], fluid=True, className="mt-4")
+
+@app.callback(
+    Output("maplibre-map", "figure"),
+    Input("route-type-dropdown", "value"))
+def update_map(selected):
+    df = route if selected == "optimized" else random_route
+    fig = go.Figure()
+    
+    fig.add_trace(go.Scattermap(lat=locations.latitude, lon=locations.longitude, mode="markers"))
+    fig.add_trace(go.Scattermap(lat=list(df.latitude)+[df.latitude.iloc[0]], lon=list(df.longitude)+[df.longitude.iloc[0]], mode="lines+markers"))
+    fig.update_layout(maplibre={"style":"open-street-map","center":{"lat":locations.latitude.mean(),"lon":locations.longitude.mean()},"zoom":4}, margin=dict(t=0,b=0,l=0,r=0))
+    return fig
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+    cumulative = np.cumsum(legs_df['Distance_km'])
+fig_cumulative = go.Figure()
+fig_cumulative.add_trace(go.Scatter(
+    x=legs_df['Leg'],
+    y=cumulative,
+    mode="lines+markers",
+    line=dict(width=3),
+    marker=dict(size=8)
+))
+fig_cumulative.update_layout(
+    title="Cumulative Distance by Stop",
+    xaxis_title="Leg",
+    yaxis_title="Distance (km)",
+    margin=dict(l=40, r=20, t=40, b=40))    
+
+
+fig_donut = go.Figure(go.Pie(
+    labels=legs_df['Leg'],
+    values=legs_df['Distance_km'],
+    hole=0.4,
+    sort=False
+))
+fig_donut.update_layout(
+    title="Distance Share per Leg",
+    margin=dict(l=20, r=20, t=40, b=20))
+
+
+improvement = (baseline_distance - distance) / baseline_distance * 100
+
+fig_indicator = go.Figure(go.Indicator(
+    mode="number+delta",
+    value=distance,
+    delta={"reference": baseline_distance, "relative": True, "valueformat": ".0%"},
+    title={"text": "Optimized vs. Baseline<br><span style='font-size:0.7em;color:gray'>Total Distance (km)</span>"},
+    number={"suffix": " km", "font": {"size": 36}},))
+
+fig_indicator.update_layout(margin={"t":50,"b":0,"l":0,"r":0})
+

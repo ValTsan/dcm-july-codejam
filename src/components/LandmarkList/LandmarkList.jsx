@@ -111,7 +111,11 @@ function LandmarkList({ filter, setFilter, sort, setSort }) {
   return (
     <div className="landmark-list">
       <div className="landmark-list__controls">
-        <select onChange={(e) => setFilter(e.target.value)} value={filter}>
+        <select
+          className="landmark-list__filter"
+          onChange={(e) => setFilter(e.target.value)}
+          value={filter}
+        >
           <option value="all">All Types</option>
           <option value="nature">Nature</option>
         </select>
