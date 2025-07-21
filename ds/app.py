@@ -295,3 +295,28 @@ fig_indicator = go.Figure(go.Indicator(
 
 fig_indicator.update_layout(margin={"t":50,"b":0,"l":0,"r":0})
 
+
+fig_spark = px.bar(
+    legs_df, x='Leg', y='Distance_km', 
+    height=150, width=300, 
+    template="simple_white")
+fig_spark.update_traces(marker_color="#4C78A8")
+fig_spark.update_layout(
+    margin=dict(t=10,b=10,l=10,r=10),
+    xaxis=dict(visible=False),
+    yaxis=dict(visible=False))
+
+fig_gauge = go.Figure(go.Indicator(
+    mode="gauge+number",
+    value=improvement,
+    number={"suffix":"%"},
+    gauge={
+        "axis":{"range":[0,100]},
+        "bar":{"color":"#F58518"},
+        "bgcolor":"#EEEEEE",
+        "threshold":{"line":{"color":"#333","width":2},"thickness":0.75,"value":improvement},}))
+fig_gauge.update_layout(
+    height=150, width=300,
+    margin=dict(t=10,b=10,l=10,r=10))
+
+
