@@ -1,134 +1,110 @@
-import LandmarkCard from "../LandmarkCard/LandmarkCard";
+import { useState } from "react";
+
 import "./LandmarkList.css";
+import LandmarkCard from "../LandmarkCard/LandmarkCard";
+import landmarks from "../../utils/landmarks";
 
-function LandmarkList({ filter, setFilter, sort, setSort }) {
-  const landmarks = [
-    {
-      name: "Grand Canyon National Park",
-      coords: [-112.0866, 36.0575],
-      type: "national park",
-      state: "California",
-      popularity: 92,
-      time: "5h",
-      icon: "🏜️",
-    },
-    {
-      name: "Yosemite National Park",
-      coords: [-119.5383, 37.8651],
-      type: "national park",
-      state: "Arizona",
-      popularity: 90,
-      time: "4h",
-      icon: "🏞️",
-    },
+function LandmarkList({
+  filter,
+  sort,
+  tripLandmarks,
+  setTripLandmarks,
+  onAddToTrip,
+}) {
+  const [selectedLandmark, setSelectedLandmark] = useState(null);
 
-    {
-      name: "Yellowstone National Park",
-      coords: [-110.5885, 44.428],
-      type: "national park",
-      state: "Wyoming",
-      popularity: 88,
-      time: "6h",
-      icon: "🌄",
-    },
-    {
-      name: "Zion National Park",
-      coords: [-113.0263, 37.2982],
-      type: "national park",
-      state: "Utah",
-      popularity: 85,
-      time: "3.5h",
-      icon: "🏔️",
-    },
-    {
-      name: "Mount Rushmore",
-      coords: [-103.4538, 43.8803],
-      type: "monument",
-      state: "South Dakota",
-      popularity: 87,
-      time: "4h",
-      icon: "☘️",
-    },
-    {
-      name: "Great Smoky Mountains",
-      coords: [-83.4987, 35.6118],
-      type: "natural wonder",
-      state: "Tennessee",
-      popularity: 89,
-      time: "4.5h",
-      icon: "🗻",
-    },
-    {
-      name: "Statue of Liberty",
-      coords: [-74.0445, 40.6892],
-      type: "historic landmark",
-      state: "New York",
-      popularity: 83,
-      time: "3h",
-      icon: "🗽",
-    },
-    {
-      name: "Arches National Park",
-      coords: [-109.5746, 38.7328],
-      type: "national park",
-      state: "Utah",
-      popularity: 84,
-      time: "4h",
-      icon: "🌅",
-    },
-    {
-      name: "Niagara Falls",
-      coords: [-79.0377, 43.0962],
-      type: "natural wonder",
-      state: "New York",
-      popularity: 86,
-      time: "5h",
-      icon: "👾",
-    },
-    {
-      name: "Golden Gate Bridge",
-      coords: [-80.8874, 25.2866],
-      type: "landmark",
-      state: "California",
-      popularity: 82,
-      time: "3.5h",
-      icon: "🏔️",
-    },
-  ];
+  const filteredLandmarks = landmarks.filter((landmark) => {
+    const timeMatch =
+      filter === "all" ||
+      (filter === "gt1" && parseInt(landmark.time) > 1) ||
+      (filter === "1to3" &&
+        parseInt(landmark.time) >= 1 &&
+        parseInt(landmark.time) <= 3) ||
+      (filter === "lt3" && parseInt(landmark.time) < 3) ||
+      landmark.type === filter;
+    return timeMatch;
+  });
 
-  const filteredLandmarks = landmarks.filter(
-    (landmark) => filter === "all" || landmark.type === filter
-  );
-  const sortedLandmarks = [...filteredLandmarks].sort((a, b) =>
-    sort === "popularity"
-      ? b.popularity - a.popularity
-      : a.time.localeCompare(b.time)
-  );
+  const sortedLandmarks = [...filteredLandmarks].sort((a, b) => {
+    if (sort === "popularity") return b.popularity - a.popularity;
+    if (sort === "rating") return b.popularity - a.popularity;
+    if (sort === "alphabetical") return a.name.localeCompare(b.name);
+    return 0;
+  });
 
-  const totalDistance = 2500; //needs to change? what's the basis? from and to?
-  const totalStops = sortedLandmarks.length; // starting point??
+  const handleCardClick = (landmark) => {
+    const detailedCard = document.getElementById(`detailed-${landmark.name}`);
+    if (detailedCard) detailedCard.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // const [tripLandmarks, setTripLandmarks] = useState([]);
+  // const [filter, setFilter] = useState("all");
+  // const [sort, setSort] = useState("popularity");
+
+  // const filteredLandmarks = landmarks.filter(
+  //   (l) => filter === "all" || l.type === filter
+  // );
+
+  // const sortedLandmarks = [...filteredLandmarks].sort((a, b) =>
+  //   sort === "popularity"
+  //     ? b.popularity - a.popularity
+  //     : a.time.localeCompare(b.time)
+  // );
+
+  // const handleCardClick = (landmark) => {
+  //   setSelectedLandmark(landmark);
+  //   const detailedCard = document.getElementById(`detailed-${landmark.name}`);
+  //   if (detailedCard) detailedCard.scrollIntoView({ behavior: "smooth" });
+  // };
+
+  // const handleAddToTrip = (landmark) => {
+  //   if (!tripLandmarks.find((l) => l.name === landmark.name)) {
+  //     setTripLandmarks([...tripLandmarks, landmark]);
+  //   }
+  // };
 
   return (
     <div className="landmark-list">
-      <div className="landmark-list__controls">
-        <select
-          className="landmark-list__filter"
-          onChange={(e) => setFilter(e.target.value)}
-          value={filter}
-        >
-          <option value="all">All Types</option>
-          <option value="nature">Nature</option>
-        </select>
-        <select onChange={(e) => setSort(e.target.value)} value={sort}>
-          <option value="popularity">Popularity</option>
-          <option value="time">Time Required</option>
-        </select>
-      </div>
+      <h2 className="landmark-list__title">Landmarks</h2>
+      <p className="landmark-list__subtitle">
+        Click on a landmark to see details
+      </p>
+
       <div className="landmark-list__card-scroll">
         {sortedLandmarks.map((landmark, index) => (
-          <LandmarkCard key={index} landmark={landmark} />
+          <div
+            key={index}
+            className={`landmark-list__card ${
+              selectedLandmark?.name === landmark.name ? "selected" : ""
+            }`}
+            onClick={() => setSelectedLandmark(landmark)}
+          >
+            <img
+              src={landmark.image}
+              alt={landmark.name}
+              className="landmark-list__image"
+            />
+
+            <div className="landmark-list__info">
+              <h3 className="landmark-list__name">{landmark.name}</h3>
+              <p className="landmark-list__rating">
+                ⭐ {landmark.popularity.toLocaleString()}
+              </p>
+              <span className="landmark-list__tag">{landmark.type}</span>
+            </div>
+          </div>
         ))}
       </div>
+
+      {/* {sortedLandmarks.map((landmark) => (
+        <LandmarkCard
+          landmark={selectedLandmark}
+          onClose={() => setSelectedLandmark(null)}
+          tripLandmarks={tripLandmarks}
+          setTripLandmarks={setTripLandmarks}
+          onAddToTrip={onAddToTrip}
+        />
+      ))()} */}
     </div>
   );
 }
