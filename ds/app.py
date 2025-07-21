@@ -227,10 +227,7 @@ fig_time = px.bar(
     title='Estimated Travel Time per Leg'
 ).update_layout(
     xaxis_tickangle=-45,
-    margin=dict(t=40, b=120))
-
-
-], fluid=True, className="mt-4")
+    margin=dict(t=40, b=120))], fluid=True, className="mt-4")
 
 @app.callback(
     Output("maplibre-map", "figure"),
