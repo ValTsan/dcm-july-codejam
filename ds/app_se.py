@@ -118,6 +118,8 @@ bar_fig = px.bar(
     legs_df,
     x='Leg',
     y='Distance_km',
+    color='Distance_km',
+    color_continuous_scale=px.colors.sequential.Oranges,
     hover_data={'Distance_km': ':.1f'},
     title='Optimized Route: Distance per Leg',
     labels={'Distance_km': 'Distance (km)'},
