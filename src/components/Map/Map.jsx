@@ -1,9 +1,8 @@
 import "./Map.css";
 import DefaultMap from "../DefaultMap/DefaultMap";
-import CustomDSMap from "../CustomDSMap/CustomDSMap";
 
 function Map() {
-  const MapToRender = DefaultMap || CustomDSMap;
+  const MapToRender = DefaultMap;
 
   return (
     <section className="map">

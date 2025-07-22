@@ -32,7 +32,7 @@ function App() {
         filter={filters}
         setFilters={setFilters}
         sort={sort}
-        setSort={setSort}
+        setSort={setSort} 
         landmarks={landmarks}
         onClick={setSelectedLandmark}
       /> */}
