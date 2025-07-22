@@ -200,7 +200,6 @@ function Main() {
           </div>
         </section>
         <LandmarkList
-          id="#trails"
           landmarks={filteredLandmarks}
           sort={sort}
           tripLandmarks={tripLandmarks}
