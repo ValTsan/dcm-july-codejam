@@ -64,7 +64,7 @@ function LandmarkList({
   // };
 
   return (
-    <div className="landmark-list">
+    <div className="landmark-list" id="trails">
       <h2 className="landmark-list__title">Landmarks</h2>
       <p className="landmark-list__subtitle">
         Click on a landmark to see details
