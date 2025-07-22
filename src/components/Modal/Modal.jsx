@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import "./Modals.css";
+import "./Modal.css";
 
-const Modals = ({ modalType, setModalType }) => {
+const Modal = ({ modalType, setModalType }) => {
   const modalRef = useRef(null);
 
   const closeModal = () => setModalType(null);
@@ -100,4 +100,4 @@ const Modals = ({ modalType, setModalType }) => {
   );
 };
 
-export default Modals;
+export default Modal;

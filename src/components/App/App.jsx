@@ -3,7 +3,7 @@ import React, { Suspense } from "react";
 import mapboxgl from "mapbox-gl";
 
 import "../App/App.css";
-import Modals from "../Modal/Modals";
+import Modal from "../Modal/Modal";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Map from "../Map/Map";
@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="container">
       <Header setModalType={setModalType} />
-      <Modals modalType={modalType} setModalType={setModalType} />
+      <Modal modalType={modalType} setModalType={setModalType} />
       <Main />
       <Map
         filter={filters}
@@ -40,9 +40,7 @@ function App() {
         setTripLandmarks={setTripLandmarks}
         // onAddToTrip={handleAddToTrip}
       />
-
       <DistanceBarChart />
-
       <Footer />
     </div>
   );
