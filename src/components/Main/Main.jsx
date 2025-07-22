@@ -1,4 +1,6 @@
 import { useState } from "react";
+
+import React from "react";
 import Select from "react-select";
 import "./Main.css";
 import LandmarkList from "../LandmarkList/LandmarkList";

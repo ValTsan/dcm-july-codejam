@@ -1,0 +1,23 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000; /* ADD THIS */
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.6s ease, opacity 0.6s ease;
+}
+
+.modal_is-opened {
+  visibility: visible;
+  opacity: 1;
+}
+
+.header {
+  z-index: 500; /* Ensure it's behind the modal */
+  position: relative;
+}
