@@ -72,10 +72,10 @@ for i in range(len(route) - 1):
 leg_dists_df = pd.DataFrame(leg_dists)
 
 #  Map Visualization
-map_fig = go.Figure()
+fig_map = go.Figure()
 
 # Markers for all locations
-map_fig.add_trace(go.Scattermapbox(
+fig_map.add_trace(go.Scattermapbox(
     lat=locations['latitude'],
     lon=locations['longitude'],
     mode='markers',
@@ -85,7 +85,7 @@ map_fig.add_trace(go.Scattermapbox(
 ))
 
 # Optimized route
-map_fig.add_trace(go.Scattermapbox(
+fig_map.add_trace(go.Scattermapbox(
     lat=route['latitude'].tolist() + [route['latitude'].iloc[0]],
     lon=route['longitude'].tolist() + [route['longitude'].iloc[0]],
     mode='lines+markers',
@@ -95,7 +95,7 @@ map_fig.add_trace(go.Scattermapbox(
 ))
 
 # Random route
-map_fig.add_trace(go.Scattermapbox(
+fig_map.add_trace(go.Scattermapbox(
     lat=random_route['latitude'].tolist() + [random_route['latitude'].iloc[0]],
     lon=random_route['longitude'].tolist() + [random_route['longitude'].iloc[0]],
     mode='lines+markers',
@@ -104,7 +104,7 @@ map_fig.add_trace(go.Scattermapbox(
     name='Random Route'
 ))
 
-map_fig.update_layout(
+fig_map.update_layout(
     mapbox_style='open-street-map',
     mapbox_center={"lat": locations['latitude'].mean(), "lon": locations['longitude'].mean()},
     mapbox_zoom=4,
@@ -114,7 +114,7 @@ map_fig.update_layout(
 
 # Bar Chart (Distance per Leg)
 
-bar_fig = px.bar(
+fig_bar = px.bar(
     leg_dists_df,
     x='Leg',
     y='Distance_km',
@@ -170,9 +170,26 @@ fig_cumulative.update_layout(
     yaxis_title="Distance (km)",
     margin=dict(l=40, r=20, t=40, b=40))  
 
+# Travel time (assuming 60 km/h)
+leg_dists_df['Time_h'] = leg_dists_df['Distance_km'] / 60
+fig_time = px.bar(
+    leg_dists_df,
+    x='Leg',
+    y='Time_h',
+    color='Time_h',
+    color_continuous_scale=px.colors.sequential.Oranges,
+    hover_data={'Time_h': ':.1f'},
+    labels={'Time_h': 'Time (h)'},
+    title='Estimated Travel Time per Leg'
+).update_layout(
+    xaxis_tickangle=-45,
+    margin=dict(t=40, b=120)
+)
+
 # Show all figures
-map_fig.show()
-bar_fig.show()
+fig_map.show()
+fig_bar.show()
+fig_time.show()
 fig_donut.show()
 fig_indicator.show()
 fig_cumulative.show()
