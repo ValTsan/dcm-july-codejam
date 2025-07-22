@@ -21,7 +21,8 @@ function App() {
 
   return (
     <div className="container">
-      <Header />
+      <Header setModalType={setModalType} />
+      <Modals modalType={modalType} setModalType={setModalType} />
       <Main />
       <Map
         filter={filters}
@@ -41,7 +42,6 @@ function App() {
 
       <BarChart />
       <Footer />
-      <Modals modalType={modalType} setModalType={setModalType} />
     </div>
   );
 }

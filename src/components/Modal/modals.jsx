@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "./Modals.css";
 
-import "./modals.css";
-
 const Modals = ({ modalType, setModalType }) => {
   const modalRef = useRef(null);
 
