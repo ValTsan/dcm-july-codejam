@@ -64,7 +64,7 @@ function LandmarkList({
   // };
 
   return (
-    <div className="landmark-list">
+    <div className="landmark-list" id="trails">
       <h2 className="landmark-list__title">Landmarks</h2>
       <p className="landmark-list__subtitle">
         Click on a landmark to see details
@@ -85,7 +85,7 @@ function LandmarkList({
               className="landmark-list__image"
             />
 
-            <div className="landmark-list__info">
+            <div className="landmark-list__info" id="trails">
               <h3 className="landmark-list__name">{landmark.name}</h3>
               <p className="landmark-list__rating">
                 ⭐ {landmark.popularity.toLocaleString()}

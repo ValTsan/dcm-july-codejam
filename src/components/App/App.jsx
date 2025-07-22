@@ -2,6 +2,7 @@ import { useState } from "react";
 import mapboxgl from "mapbox-gl";
 
 import "../App/App.css";
+import Modals from "../Modal/modals";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Map from "../Map/Map";
@@ -16,6 +17,7 @@ function App() {
   const [filters, setFilters] = useState("all");
   const [sort, setSort] = useState("popularity");
   const [selectedLandmark, setSelectedLandmark] = useState(landmarks[0]);
+  const [modalType, setModalType] = useState(null);
 
   return (
     <div className="container">
@@ -39,6 +41,7 @@ function App() {
 
       <BarChart />
       <Footer />
+      <Modals modalType={modalType} setModalType={setModalType} />
     </div>
   );
 }
