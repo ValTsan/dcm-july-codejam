@@ -1,28 +1,4 @@
 @font-face {
-  font-family: "Bitcount Grid Single";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("./fonts/BitcountGridSingle.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "ShareTech Regular";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("./fonts/ShareTech-Regular.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "StingerFit Regular";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("./fonts/StingerFit-Regular.ttf") format("truetype");
-}
-
-@font-face {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;

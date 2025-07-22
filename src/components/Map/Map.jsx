@@ -1,3 +1,4 @@
+import React from "react";
 import "./Map.css";
 import DefaultMap from "../DefaultMap/DefaultMap";
 

@@ -1,3 +1,4 @@
+import React from "react";
 import "./Header.css";
 import Logo from "../../../public/header-logo.png";
 
