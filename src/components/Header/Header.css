@@ -7,7 +7,7 @@
   color: #ffffff;
   position: relative;
   top: 0;
-  z-index: 99999;
+  z-index: 1;
   border-radius: 2%;
 }
 
