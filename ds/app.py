@@ -69,13 +69,13 @@ for i in range(len(route) - 1):
     d = geodesic(start, end).km
     leg_dists.append({'Leg': f"{route.iloc[i]['name']} → {route.iloc[i+1]['name']}", 'Distance_km': d})
 
-legs_df = pd.DataFrame(leg_dists)
+leg_dists_df = pd.DataFrame(leg_dists)
 
 # Cumulative Distance Chart
-cumulative = np.cumsum(legs_df['Distance_km'])
+cumulative = np.cumsum(leg_dists_df['Distance_km'])
 fig_cumulative = go.Figure()
 fig_cumulative.add_trace(go.Scatter(
-    x=legs_df['Leg'],
+    x=leg_dists_df['Leg'],
     y=cumulative,
     mode="lines+markers",
     line=dict(width=3, color='orange'),
@@ -90,8 +90,8 @@ fig_cumulative.update_layout(
 
 # Donut Chart
 fig_donut = go.Figure(go.Pie(
-    labels=legs_df['Leg'],
-    values=legs_df['Distance_km'],
+    labels=leg_dists_df['Leg'],
+    values=leg_dists_df['Distance_km'],
     hole=0.4,
     sort=False, 
 ))
@@ -111,9 +111,9 @@ fig_indicator = go.Figure(go.Indicator(
 fig_indicator.update_layout(margin={"t": 50, "b": 0, "l": 0, "r": 0})
 
 # Travel time (assuming 60 km/h)
-legs_df['Time_h'] = legs_df['Distance_km'] / 60
+leg_dists_df['Time_h'] = leg_dists_df['Distance_km'] / 60
 fig_time = px.bar(
-    legs_df,
+    leg_dists_df,
     x='Leg',
     y='Time_h',
     color='Time_h',
@@ -194,7 +194,7 @@ app.layout = dbc.Container([
         dbc.Col(dcc.Graph(
             id='distance-bar-chart',
             figure=px.bar(
-                legs_df,
+                leg_dists_df,
                 x='Leg',
                 y='Distance_km',
                 color='Distance_km',
