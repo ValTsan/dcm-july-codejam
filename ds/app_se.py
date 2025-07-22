@@ -113,6 +113,7 @@ fig_map.update_layout(
 )
 
 # Bar Chart (Distance per Leg)
+
 fig_bar = px.bar(
     leg_dists_df,
     x='Leg',
@@ -123,9 +124,11 @@ fig_bar = px.bar(
     title='Optimized Route: Distance per Leg',
     labels={'Distance_km': 'Distance (km)'},
 ).update_layout(
+    title={'text': "Optimized Route: Distance per Leg", 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top', 'font': {'size': 20}},
     xaxis_tickangle=-45, 
     margin=dict(t=40, b=150),
     )
+fig_bar.show()
 
 # Donut Chart (Share per Leg)
 fig_donut = go.Figure(go.Pie(
@@ -135,8 +138,13 @@ fig_donut = go.Figure(go.Pie(
     sort=False,
 ))
 fig_donut.update_layout(
-    title="Distance Share per Leg",
-    margin=dict(l=20, r=20, t=40, b=20)
+    title={'text': "Distance Share per Leg", 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top', 'font': {'size': 20}},
+    margin=dict(l=40, r=40, t=40, b=40),
+    legend=dict(
+        x=1.02,
+        y=0.5,
+        xanchor='left',
+        yanchor='middle')
 )
 
 # Distance Improvement Indicator
@@ -162,10 +170,16 @@ fig_cumulative.add_trace(go.Scatter(
     marker=dict(size=8)
 ))
 fig_cumulative.update_layout(
-    title="Cumulative Distance by Stop",
+    title= {
+        'text': "Cumulative Distance by Stop",
+        'x': 0.5,
+        'xanchor': 'center',
+        'yanchor': 'top',
+        'font': {'size': 20}
+    },
     xaxis_title="Leg",
     yaxis_title="Distance (km)",
-    margin=dict(l=40, r=20, t=40, b=40))  
+    margin=dict(l=40, r=20, t=40, b=40))
 
 # Travel time (assuming 60 km/h)
 leg_dists_df['Time_h'] = leg_dists_df['Distance_km'] / 60
@@ -180,8 +194,48 @@ fig_time = px.bar(
     title='Estimated Travel Time per Leg'
 ).update_layout(
     xaxis_tickangle=-45,
-    margin=dict(t=40, b=120)
+    margin=dict(t=40, b=120),
+    title={'text': 'Estimated Travel Time per Leg', 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top', 'font': {'size': 20}}
 )
+
+# Calculate hours saved by optimization
+average_speed = 60  # km/h
+
+optimized_time = distance / average_speed 
+random_time = baseline_distance / average_speed
+
+hours_saved = random_time - optimized_time
+print(f"Hours saved by optimization: {hours_saved:.0f} hours")
+
+# Bar Chart for Time Comparison
+fig = go.Figure()
+fig.add_trace(go.Bar(
+    x=["Random Route", "Optimized Route"],
+    y=[random_time, optimized_time],
+    text=[f"{random_time:.0f} h", f"{optimized_time:.0f} h"],
+    textposition="auto",
+    marker_color=["#FFA500", "#FF8C00"]
+))
+
+#  Add a text annotation for hours saved
+fig.add_annotation(
+    text=f"Hours saved: {hours_saved:.0f} h",
+    xref="paper", yref="paper",
+    x=1, y=1,
+    showarrow=False,
+    font=dict(size=14, color="black"),
+    align="center"
+)
+
+# Update layout for the bar chart
+fig.update_layout(
+    title={'text': "Total Travel Time Comparison", 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top', 'font': {'size': 20}},
+    yaxis_title="Time (hours)",
+    xaxis_title="Routes",
+    bargap=0.4,
+    template="plotly_white"
+)
+
 
 # Show all figures
 fig_map.show()
@@ -190,5 +244,6 @@ fig_time.show()
 fig_donut.show()
 fig_indicator.show()
 fig_cumulative.show()
+fig.show()
 
  
