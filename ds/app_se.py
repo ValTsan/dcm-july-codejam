@@ -113,7 +113,6 @@ fig_map.update_layout(
 )
 
 # Bar Chart (Distance per Leg)
-
 fig_bar = px.bar(
     leg_dists_df,
     x='Leg',
@@ -129,7 +128,6 @@ fig_bar = px.bar(
     )
 
 # Donut Chart (Share per Leg)
-
 fig_donut = go.Figure(go.Pie(
     labels=leg_dists_df['Leg'],
     values=leg_dists_df['Distance_km'],
@@ -142,7 +140,6 @@ fig_donut.update_layout(
 )
 
 # Distance Improvement Indicator
-
 improvement = (baseline_distance - distance) / baseline_distance * 100
 fig_indicator = go.Figure(go.Indicator(
     mode="number+delta",
