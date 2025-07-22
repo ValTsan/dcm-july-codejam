@@ -9,6 +9,7 @@ import LandmarkList from "../LandmarkList/LandmarkList";
 import LandmarkCard from "../LandmarkCard/LandmarkCard";
 import Footer from "../Footer/Footer";
 import landmarks from "../../utils/landmarks";
+import Modals from "../../components/Modal";
 
 function App() {
   const [startPark, setStartPark] = useState("");
@@ -36,6 +37,7 @@ function App() {
         onClick={setSelectedLandmark}
       />
       <Footer />
+      <Modals modalType={modalType} setModalType={setModalType} />
     </div>
   );
 }

@@ -18,16 +18,12 @@ const Header = () => {
             </a>
           </li>
           <li className="header__nav-list">
-            <a href="" className="header__nav-link">
+            <button type="button" className="header__nav-btn">
               Log In
-            </a>
+            </button>
           </li>
           <li className="header__nav-list">
-            <button
-              type="button"
-              className="header__nav-btn"
-              id="#signup-modal"
-            >
+            <button type="button" className="header__nav-btn">
               Sign Up
             </button>
           </li>
