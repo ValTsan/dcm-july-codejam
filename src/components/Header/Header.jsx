@@ -1,7 +1,7 @@
 import "./Header.css";
 import Logo from "../../../public/header-logo.png";
 
-const Header = () => {
+const Header = ({ setModalType }) => {
   return (
     <header className="header">
       <div className="header__navbar">
@@ -18,12 +18,20 @@ const Header = () => {
             </a>
           </li>
           <li className="header__nav-list">
-            <button type="button" className="header__nav-btn">
+            <button
+              type="button"
+              className="header__nav-btn"
+              onClick={() => setModalType("login")}
+            >
               Log In
             </button>
           </li>
           <li className="header__nav-list">
-            <button type="button" className="header__nav-btn">
+            <button
+              type="button"
+              className="header__signup-btn"
+              onClick={() => setModalType("signup")}
+            >
               Sign Up
             </button>
           </li>
