@@ -1,6 +1,7 @@
 .barchart__container {
   width: 100%;
-  max-width: 1000px;
+  max-width: 500px;
+  height: 500px;
   margin: 32px auto;
   padding: 1rem;
   background-color: #ffffff;
@@ -8,6 +9,7 @@
   border: 2px solid #f97316;
   border-radius: 20px;
   box-shadow: 4px 6px #ffb38a;
+  overflow: hidden;
 }
 
 .barchart__title {
@@ -17,9 +19,18 @@
   margin: 30px 5px 10px 5px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .barchart__container {
-    padding: 0.5rem;
-    margin: 1rem;
+    width: 90%;
+    padding: 16px;
+    margin: 18px auto;
+    overflow-x: auto;
+    height: auto;
+  }
+
+  .barchart__title {
+    font-size: 24px;
+    text-align: center;
+    margin: 20px 0 10px;
   }
 }

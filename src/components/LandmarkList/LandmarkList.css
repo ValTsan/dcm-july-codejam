@@ -87,3 +87,54 @@
   background: #ffb38a;
   border-radius: 4px;
 }
+
+@media screen and (min-width: 601px) and (max-width: 905px) {
+  .landmark-list {
+    width: 95%;
+    padding: 12px;
+    margin-top: 30px;
+  }
+
+  .landmark-list__title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .landmark-list {
+    width: 90%;
+    padding: 10px;
+    margin-top: 20px;
+  }
+
+  .landmark-list__title {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .landmark-list__subtitle {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .landmark-list__card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .landmark-list__image {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto 12px;
+  }
+  .landmark-list__info {
+    align-items: center;
+  }
+  .landmark-list__name {
+    font-size: 16px;
+  }
+  .landmark-list__rating {
+    font-size: 14px;
+  }
+}

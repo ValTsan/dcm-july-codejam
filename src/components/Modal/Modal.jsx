@@ -35,7 +35,13 @@ const Modal = ({ modalType, setModalType }) => {
         <h2 className="modal__title">
           {modalType === "signup" ? "Sign Up" : "Log In"}
         </h2>
-        <form className="modal__form" onSubmit={(e) => e.preventDefault()}>
+        <form
+          className="modal__form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            closeModal();
+          }}
+        >
           {modalType === "signup" ? (
             <>
               <label className="modal__label">
