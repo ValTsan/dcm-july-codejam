@@ -89,7 +89,7 @@ function Main() {
           <div className="main__trip-summary-boxes">
             <div className="main__trip-summary-box">
               <p className="main__trip-summary-label">Landmarks</p>
-              <p className="main__trip-summary-value">{tripLegs} miles</p>
+              <p className="main__trip-summary-value">{tripLegs} </p>
             </div>
             <div className="main__trip-summary-box">
               <p className="main__trip-summary-label">Number of Stops</p>
