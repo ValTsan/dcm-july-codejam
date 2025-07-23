@@ -33,6 +33,6 @@
 
 @media (max-width: 480px) {
   .barchart__container {
-    width: 400px;
+    width: 380px;
   }
 }

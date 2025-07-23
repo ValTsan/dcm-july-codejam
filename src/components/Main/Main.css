@@ -22,7 +22,8 @@
 
 .main__trip-summary {
   background-color: #fff;
-  width: 850px;
+  max-width: 900px;
+  width: 100%;
   border: 2px solid #f97316;
   border-radius: 20px;
   padding: 15px;
@@ -75,7 +76,8 @@
 
 .main__filters {
   background-color: #fff;
-  width: 850px;
+  max-width: 900px;
+  width: 100%;
   border: 2px solid #f97316;
   border-radius: 20px;
   padding: 15px;

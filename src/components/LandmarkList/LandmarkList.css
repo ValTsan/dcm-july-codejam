@@ -5,7 +5,8 @@
   align-items: center;
   justify-content: center;
   background-color: #fff;
-  width: 895px;
+  max-width: 900px;
+  width: 100%;
   border: 2px solid #f97316;
   border-radius: 20px;
   padding: 15px;
@@ -102,6 +103,6 @@
 
 @media (max-width: 480px) {
   .landmark-list {
-    max-width: 420px;
+    max-width: 400px;
   }
 }
