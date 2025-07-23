@@ -13,6 +13,17 @@ import DistanceBarChart from "../DistanceBarChart/DistanceBarChart";
 import Footer from "../Footer/Footer";
 import landmarks from "../../utils/landmarks";
 
+// finalize app
+// clean up code
+// mobile and tablet view
+// filter logic? keep working or just make is static due to deadline?
+// ds wants to add more graphs and charts
+// landmark cards rendering 2, which one you want up or down?
+// modals for login and sign up finalize
+// your trip summary - hard code entries?
+// footer finalize
+//
+
 function App() {
   const [filters, setFilters] = useState("all");
   const [sort, setSort] = useState("popularity");
