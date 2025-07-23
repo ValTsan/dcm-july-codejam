@@ -155,3 +155,24 @@
   cursor: pointer;
   position: relative;
 }
+@media (max-width: 768px) {
+  .main__content {
+    padding: 1px;
+  }
+
+  .main__trip-summary {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 600px) {
+  .main__trip-summary {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main__trip-summary {
+    max-width: 400px;
+  }
+}
