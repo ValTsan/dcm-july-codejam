@@ -24,6 +24,7 @@ def total_distance(route):
         distance += geodesic(start, end).km
     return distance
 
+# Calculate the baseline distance of the random route
 baseline_distance = total_distance(random_route)
 
 # Nearest neighbor algorithm for optimized route
@@ -61,7 +62,11 @@ def nearest_neighbor(locations):
 # Calculate optimized route
 route, distance, duration = nearest_neighbor(locations)
 
-# Calculate leg distances for bar chart
+# Add 'type' for dropdown comparison
+random_route['type'] = 'Random Route'
+route['type'] = 'Optimized Route'
+
+# Function to calculate leg distances
 leg_dists = []
 for i in range(len(route) - 1):
     start = (route.iloc[i]['latitude'], route.iloc[i]['longitude'])
@@ -71,7 +76,7 @@ for i in range(len(route) - 1):
 
 leg_dists_df = pd.DataFrame(leg_dists)
 
-#  Map Visualization
+# Map Visualization to compare routes with markers
 fig_map = go.Figure()
 
 # Markers for all locations
@@ -113,7 +118,6 @@ fig_map.update_layout(
 )
 
 # Bar Chart (Distance per Leg)
-
 fig_bar = px.bar(
     leg_dists_df,
     x='Leg',
@@ -157,7 +161,6 @@ fig_indicator = go.Figure(go.Indicator(
     number={"suffix": " km", "font": {"size": 36}}
 ))
 fig_indicator.update_layout(margin={"t":50,"b":0,"l":0,"r":0})
-
 
 # Cumulative Distance Chart
 cumulative = np.cumsum(leg_dists_df['Distance_km'])

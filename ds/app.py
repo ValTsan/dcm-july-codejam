@@ -14,7 +14,7 @@ locations = data[['name', 'latitude', 'longitude']]
 # Create random route
 random_route = locations.sample(frac=1, random_state=7).reset_index(drop=True)
 
-# Function to calculate total distance
+# Function to calculate total distance of a route
 def total_distance(route):
     distance = 0
     for i in range(len(route) - 1):
@@ -23,9 +23,10 @@ def total_distance(route):
         distance += geodesic(start, end).km
     return distance
 
+# Calculate the baseline distance of the random route
 baseline_distance = total_distance(random_route)
 
-# Nearest neighbor algorithm
+# Nearest neighbor algorithm for optimized route
 def nearest_neighbor(locations):
     start_time = time.time()
     unvisited = locations.copy().reset_index(drop=True)
@@ -82,33 +83,44 @@ fig_cumulative.add_trace(go.Scatter(
     marker=dict(size=8)
 ))
 fig_cumulative.update_layout(
-    title="Cumulative Distance by Stop",
+    title= {
+        'text': "Cumulative Distance by Stop",
+        'x': 0.5,
+        'xanchor': 'center',
+        'yanchor': 'top',
+        'font': {'size': 20}
+    },
     xaxis_title="Leg",
     yaxis_title="Distance (km)",
-    margin=dict(l=40, r=20, t=40, b=40)
-)
+    margin=dict(l=40, r=20, t=40, b=40))
 
-# Donut Chart
+# Donut Chart (Share per Leg)
 fig_donut = go.Figure(go.Pie(
     labels=leg_dists_df['Leg'],
     values=leg_dists_df['Distance_km'],
     hole=0.4,
-    sort=False, 
+    sort=False,
 ))
 fig_donut.update_layout(
-    title="Distance Share per Leg",
-    margin=dict(l=20, r=20, t=40, b=20)
+    title={'text': "Distance Share per Leg", 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top', 'font': {'size': 20}},
+    margin=dict(l=40, r=40, t=40, b=40),
+    legend=dict(
+        x=1.02,
+        y=0.5,
+        xanchor='left',
+        yanchor='middle')
 )
 
-# Indicator
+# Distance Improvement Indicator
+improvement = (baseline_distance - distance) / baseline_distance * 100
 fig_indicator = go.Figure(go.Indicator(
     mode="number+delta",
     value=distance,
-    delta={"reference": baseline_distance, "relative": True, "valueformat": ".0%"},
+    delta={"reference": baseline_distance, "relative": True, "valueformat": ".1%"},
     title={"text": "Optimized vs. Baseline<br><span style='font-size:0.7em;color:gray'>Total Distance (km)</span>"},
-    number={"suffix": " km", "font": {"size": 36}},
+    number={"suffix": " km", "font": {"size": 36}}
 ))
-fig_indicator.update_layout(margin={"t": 50, "b": 0, "l": 0, "r": 0})
+fig_indicator.update_layout(margin={"t":50,"b":0,"l":0,"r":0})
 
 # Travel time (assuming 60 km/h)
 leg_dists_df['Time_h'] = leg_dists_df['Distance_km'] / 60
@@ -123,7 +135,8 @@ fig_time = px.bar(
     title='Estimated Travel Time per Leg'
 ).update_layout(
     xaxis_tickangle=-45,
-    margin=dict(t=40, b=120)
+    margin=dict(t=40, b=120),
+    title={'text': 'Estimated Travel Time per Leg', 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top', 'font': {'size': 20}}
 )
 
 # Initialize Dash App
