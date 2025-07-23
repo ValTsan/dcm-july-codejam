@@ -5,17 +5,14 @@ import Logo from "/header-logo.png";
 function Footer() {
   return (
     <div className="footer">
-      <div className="footer__left">
+      <div className="footer__container">
         <img src={Logo} alt="Daytrppr Logo" className="footer__logo" />
-        <span className="footer__title">Daytrippr&trade;</span>
-      </div>
 
-      <div className="footer__center">
-        Best Summer Sightseeing Roadtrip&trade;
-      </div>
+        <div className="footer__title"> Daytrippr &trade;</div>
 
-      <div className="footer__right">
-        Built by DCM Team Valerie, Jeel, Viktor and Steven
+        <div className="footer__team">
+          Built by DCM Team Valerie, Jeel, Viktor and Steven
+        </div>
       </div>
     </div>
   );

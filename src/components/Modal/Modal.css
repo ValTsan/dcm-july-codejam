@@ -38,7 +38,8 @@
 }
 
 .modal__close-btn {
-  background: transparent url("/public/close_button.svg ") center no-repeat;
+  background: transparent url("../../../public/close_button.svg") center
+    no-repeat;
   border-style: none;
   cursor: pointer;
   position: absolute;
