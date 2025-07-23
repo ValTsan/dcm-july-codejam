@@ -1,18 +1,18 @@
 const legDistance = [
   {
-    leg: "Grand Canyon \u2192 Yosemite",
+    leg: "Grand Canyon National Park \u2192 Yosemite National Park",
     distance_km: 413.2,
   },
   {
-    leg: "Yosemite \u2192 Yellowstone",
+    leg: "Yosemite National Park \u2192 Yellowstone National Park",
     distance_km: 1127.4,
   },
   {
-    leg: "Yellowstone \u2192 Zion",
+    leg: "Yellowstone National Park \u2192 Zion National Park",
     distance_km: 720.8,
   },
   {
-    leg: "Zion \u2192 Mount Rushmore",
+    leg: "Zion National Park \u2192 Mount Rushmore",
     distance_km: 975.2,
   },
   {
@@ -24,11 +24,11 @@ const legDistance = [
     distance_km: 1060.7,
   },
   {
-    leg: "Statue of Liberty \u2192 Arches",
+    leg: "Statue of Liberty \u2192 Arches National Park",
     distance_km: 2153.5,
   },
   {
-    leg: "Arches \u2192 Niagara Falls",
+    leg: "Arches National Park \u2192 Niagara Falls",
     distance_km: 1510.6,
   },
   {

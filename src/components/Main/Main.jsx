@@ -5,6 +5,7 @@ import Select from "react-select";
 import "./Main.css";
 import LandmarkList from "../LandmarkList/LandmarkList";
 import landmarks from "../../utils/landmarks";
+import legDistance from "../../utils/leg-distance";
 
 const sortOptions = [
   { value: "popularity", label: "Popularity" },
@@ -34,37 +35,18 @@ function Main() {
     }
   };
 
-  // let filteredLandmarks = landmarks.filter((lm) => {
-  //   // type filter
-  //   const matchesType =
-  //     filters.type === "" ||
-  //     lm.type.toLowerCase() === filters.type.toLowerCase();
-
-  //   // time filter
-  //   const timeNum = parseFloat(lm.time);
-  //   let matchesTime = true;
-  //   if (filters.time === "gt1") matchesTime = timeNum > 1;
-  //   else if (filters.time === "1to3")
-  //     matchesTime = timeNum >= 1 && timeNum <= 3;
-  //   else if (filters.time === "lt3") matchesTime = timeNum < 3;
-
-  //   return matchesType && matchesTime;
-  // });
-
+  // filter logic
   const filteredLandmarks = landmarks.filter((lm) => {
-    const timeMatch =
-      filters.type === "all" ||
-      (filters.type === "gt1" && parseInt(lm.time) > 1) ||
-      (filters.type === "1to3" &&
-        parseInt(lm.time) >= 1 &&
-        parseInt(lm.time) <= 3) ||
-      (filters.type === "lt3" && parseInt(lm.time) < 3) ||
-      lm.type === filters.type;
-    return (
-      timeMatch &&
-      (filters.state === "" || lm.state === filters.state) &&
-      lm.popularity >= filters.minPopularity
-    );
+    const typeMatch =
+      filters.type === "all" || lm.type === filters.type || filters.type === "";
+
+    const timeNum = parseFloat(lm.time);
+    let timeMatch = true;
+    if (filters.time === "gt1") timeMatch = timeNum > 1;
+    else if (filters.time === "1to3") timeMatch = timeNum >= 1 && timeNum <= 3;
+    else if (filters.time === "lt3") timeMatch = timeNum < 3;
+
+    return typeMatch && timeMatch;
   });
 
   // sorting logic
@@ -74,9 +56,26 @@ function Main() {
     filteredLandmarks.sort((a, b) => a.name.localeCompare(b.name));
   }
 
-  const totalDistance = tripLandmarks.length > 0 ? 1250 : 0;
+  // trip summary logic
+  const getTripLegs = (tripLandmarks) => {
+    const legs = [];
+
+    for (let i = 0; i < tripLandmarks.length - 1; i++) {
+      const from = landmarks[i].name;
+      const to = landmarks[i + 1].name;
+      const legName = `${from} → ${to}`;
+      console.log("Generated Leg:", legName);
+      legs.push(legName);
+    }
+    return legs;
+  };
+
+  const tripLegs = getTripLegs(tripLandmarks);
   const totalStops = tripLandmarks.length;
-  const totalDuration = tripLandmarks.length > 0 ? "7 days" : "0 days";
+  const totalDistance = tripLegs.reduce((sum, legName) => {
+    const match = legDistance.find((leg) => leg.leg === legName);
+    return sum + (match?.distance_km || 0);
+  }, 0);
 
   return (
     <div className="main">
@@ -89,16 +88,16 @@ function Main() {
 
           <div className="main__trip-summary-boxes">
             <div className="main__trip-summary-box">
-              <p className="main__trip-summary-label">Total Distance</p>
-              <p className="main__trip-summary-value">{totalDistance} miles</p>
+              <p className="main__trip-summary-label">Landmarks</p>
+              <p className="main__trip-summary-value">{tripLegs} miles</p>
             </div>
             <div className="main__trip-summary-box">
               <p className="main__trip-summary-label">Number of Stops</p>
               <p className="main__trip-summary-value">{totalStops}</p>
             </div>
             <div className="main__trip-summary-box">
-              <p className="main__trip-summary-label">Total Duration</p>
-              <p className="main__trip-summary-value">{totalDuration}</p>
+              <p className="main__trip-summary-label">Total Distance</p>
+              <p className="main__trip-summary-value">{totalDistance}</p>
             </div>
           </div>
         </section>
@@ -109,7 +108,7 @@ function Main() {
           <div className="main__filters-tags">
             <button
               className={`main__filters-tag ${
-                filters.type === "all" ? "main__filters-tag--active" : ""
+                filters.type === "All" ? "main__filters-tag--active" : ""
               }`}
               onClick={() =>
                 setFilters((prev) => ({ ...filters, type: "all" }))
@@ -119,56 +118,56 @@ function Main() {
             </button>
             <button
               className={`main__filters-tag ${
-                filters.type === "national park"
+                filters.type === "National Park"
                   ? "main__filters-tag--active"
                   : ""
               }`}
               onClick={() =>
-                setFilters((prev) => ({ ...prev, type: "national park" }))
+                setFilters((prev) => ({ ...prev, type: "National Park" }))
               }
             >
               National Park
             </button>
             <button
               className={`main__filters-tag ${
-                filters.type === "natural wonder"
+                filters.type === "Natural Wonder"
                   ? "main__filters-tag--active"
                   : ""
               }`}
               onClick={() =>
-                setFilters((prev) => ({ ...prev, type: "national wonder" }))
+                setFilters((prev) => ({ ...prev, type: "Natural Wonder" }))
               }
             >
               Natural Wonder
             </button>
             <button
               className={`main__filters-tag ${
-                filters.type === "historic landmark"
+                filters.type === "Historic Landmark"
                   ? "main__filters-tag--active"
                   : ""
               }`}
               onClick={() =>
-                setFilters((prev) => ({ ...prev, type: "historic landmark" }))
+                setFilters((prev) => ({ ...prev, type: "Historic Landmark" }))
               }
             >
               Historic Landmark
             </button>
             <button
               className={`main__filters-tag ${
-                filters.type === "monument" ? "main__filters-tag--active" : ""
+                filters.type === "Monument" ? "main__filters-tag--active" : ""
               }`}
               onClick={() =>
-                setFilters((prev) => ({ ...prev, type: "monument" }))
+                setFilters((prev) => ({ ...prev, type: "Monument" }))
               }
             >
               Monument
             </button>
             <button
               className={`main__filters-tag ${
-                filters.type === "hidden" ? "main__filters-tag--active" : ""
+                filters.type === "Hidden" ? "main__filters-tag--active" : ""
               }`}
               onClick={() =>
-                setFilters((prev) => ({ ...prev, type: "monument" }))
+                setFilters((prev) => ({ ...prev, type: "Monument" }))
               }
             >
               Hidden Gems
@@ -201,9 +200,11 @@ function Main() {
             </div>
           </div>
         </section>
+
         <LandmarkList
-          landmarks={filteredLandmarks}
+          filter={filters}
           sort={sort}
+          landmarks={filteredLandmarks}
           tripLandmarks={tripLandmarks}
           setTripLandmarks={setTripLandmarks}
           onAddToTrip={handleAddToTrip}

@@ -8,27 +8,21 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Map from "../Map/Map";
 import LandmarkList from "../LandmarkList/LandmarkList";
-// import LandmarkCard from "../LandmarkCard/LandmarkCard";
+import LandmarkCard from "../LandmarkCard/LandmarkCard";
 import DistanceBarChart from "../DistanceBarChart/DistanceBarChart";
 import Footer from "../Footer/Footer";
 import landmarks from "../../utils/landmarks";
-
-// finalize app
-// clean up code
-
-// filter logic? keep working or just make is static due to deadline?
-// ds wants to add more graphs and charts
-// landmark cards rendering 2, which one you want up or down?
-// modals for login and sign up finalize
-// your trip summary - hard code entries?
-// footer finalize
-//
 
 function App() {
   const [filters, setFilters] = useState("all");
   const [sort, setSort] = useState("popularity");
   const [tripLandmarks, setTripLandmarks] = useState([]);
   const [modalType, setModalType] = useState(null);
+  const onAddToTrip = (landmark) => {
+    if (!tripLandmarks.find((l) => l.name === landmark.name)) {
+      setTripLandmarks([...tripLandmarks, landmark]);
+    }
+  };
 
   return (
     <div className="container">
@@ -40,17 +34,7 @@ function App() {
         sort={sort}
         setSort={setSort}
       />
-      <LandmarkList
-        filter={filters}
-        setFilters={setFilters}
-        sort={sort}
-        setSort={setSort}
-        landmarks={landmarks}
-        tripLandmarks={tripLandmarks}
-        setTripLandmarks={setTripLandmarks}
-        // onAddToTrip={handleAddToTrip}
-      />
-      <DistanceBarChart />
+      <DistanceBarChart tripLandmarks={tripLandmarks} />
       <Footer />
       <Modal modalType={modalType} setModalType={setModalType} />
     </div>

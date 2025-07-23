@@ -21,16 +21,117 @@
   object-fit: cover;
   border-radius: 12px;
   border: 2px solid #f97316;
+  background-color: #ffeeda;
   margin-bottom: 16px;
 }
 
 .landmark-card__name {
-  font-size: 1.2rem;
-  margin: 8px 0;
-  font-size: 600;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  color: #792008;
+}
+.landmark-card__rating {
+  font-size: 16px;
+  color: #c25b22;
+  margin-bottom: 7px;
+}
+
+.landmark-card__tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.landmark-card__tag {
+  font-size: 12px;
+  background-color: #ffe4ca;
+  color: #924b26;
+  padding: 4px 10px;
+  border-radius: 999px;
 }
 
 .landmark-card__details {
-  font-size: 0.9rem;
-  color: #555;
+  font-size: 18px;
+  color: #6b2f12;
+  line-height: 1.5;
+  margin: 10px 0 10px;
+}
+
+.landmark-card__description {
+  font-size: 18px;
+  color: #6b2f12;
+  line-height: 1.5;
+  margin: 10px 0 10px;
+}
+
+.landmark-card__button {
+  align-self: center;
+  padding: 10px 20px;
+  font-family: "Montserrat";
+  font-size: 17px;
+  font-weight: 600;
+  background-color: #f97316;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 3px 2px #ffb38a;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.landmark-card__button:hover {
+  background-color: #ea5c00;
+}
+
+@media screen and (min-width: 601px) and (max-width: 905px) {
+  .landmark-card {
+    width: 90%;
+    padding: 14px;
+    margin-top: 30px;
+  }
+
+  .landmark-card__image {
+    height: 220px;
+  }
+
+  .landmark-card__name {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .landmark-card__details {
+    font-size: 18px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .landmark-card {
+    width: 90%;
+    padding: 12px;
+    margin-top: 25px;
+  }
+
+  .landmark-card__image {
+    height: 200px;
+    border-radius: 10px;
+  }
+
+  .landmark-card__name {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .landmark-card__details {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .landmark-card__description {
+    font-size: 15px;
+    text-align: center;
+    padding: 0 10px;
+  }
 }

@@ -115,29 +115,18 @@
 }
 
 .modal__submit-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border-style: none;
   max-width: 156px;
-  height: 52px;
-  margin-left: 0;
-  margin-top: auto;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1;
   padding: 18px 32px;
-  gap: 8px;
-  border-radius: 8px;
-  background: #f97316;
-  color: rgba(252, 245, 229, 1);
-  white-space: nowrap;
-  font-size: 23px;
-  font-weight: 700;
-  margin: 0 0 32px;
-  line-height: 1;
-  color: #792008;
+  font-family: "Montserrat";
+  font-size: 17px;
+  font-weight: 600;
+  background-color: #f97316;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 3px 2px #ffb38a;
+  cursor: pointer;
+  transition: background-color 0.2s;
 
   .modal__submit-btn_disabled {
     cursor: pointer;
