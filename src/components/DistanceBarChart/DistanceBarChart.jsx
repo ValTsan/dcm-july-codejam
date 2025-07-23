@@ -16,7 +16,7 @@ function DistanceBarChart() {
   return (
     <div className="barchart__container">
       <h2 className="barchart__title">Distance per Leg</h2>
-      <ResponsiveContainer width="100%" height={600}>
+      <ResponsiveContainer width="100%" height={400}>
         <BarChart
           data={legDistance}
           margin={{ top: 30, right: 30, left: 20, bottom: 200 }}
