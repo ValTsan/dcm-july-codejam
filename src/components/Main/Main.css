@@ -156,14 +156,35 @@
   position: relative;
 }
 
+@media screen and (min-width: 601px) and (max-width: 905px) {
+  .main__trip-summary,
+  .main__filters {
+    width: 95%;
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .main__trip-summary-boxes {
+    justify-content: center;
+  }
+
+  .main__trip-summary-box {
+    flex: 1 1 45%;
+    min-width: 160px;
+  }
+
+  .main__filters-controls {
+    gap: 24px;
+  }
+
+  .main__filters-select {
+    min-width: unset;
+  }
+}
+
 @media (max-width: 600px) {
   .main {
     padding: 12px;
-  }
-
-  .main__content {
-    width: 100%;
-    max-width: 100%;
   }
 
   .main__trip-summary,
@@ -176,15 +197,9 @@
   .main__trip-summary-title,
   .main__filters-title {
     font-size: 24px;
-    text-align: center;
   }
   .main__trip-summary-subtitle {
     font-size: 14px;
-    text-align: center;
-  }
-  .main__trip-summary-subtitle {
-    font-size: 14px;
-    text-align: center;
   }
 
   .main__trip-summary-boxes {
@@ -197,18 +212,11 @@
   }
 
   .main__filters-tags {
-    justify-content: center;
     gap: 8px;
   }
 
   .main__filters-controls {
     flex-direction: column;
     gap: 16px;
-    width: 100%;
-  }
-
-  .main__filters-select {
-    min-width: unset;
-    width: 100%;
   }
 }
