@@ -22,6 +22,7 @@ function App() {
   return (
     <div className="container">
       <Header setModalType={setModalType} />
+      <Modal modalType={modalType} setModalType={setModalType} />
       <Main />
       <Map
         filter={filters}
@@ -41,7 +42,6 @@ function App() {
       />
       <DistanceBarChart />
       <Footer />
-      <Modal modalType={modalType} setModalType={setModalType} />
     </div>
   );
 }

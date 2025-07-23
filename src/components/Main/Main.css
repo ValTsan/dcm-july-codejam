@@ -22,7 +22,7 @@
 
 .main__trip-summary {
   background-color: #fff;
-  width: 800px;
+  width: 850px;
   border: 2px solid #f97316;
   border-radius: 20px;
   padding: 15px;
@@ -75,7 +75,7 @@
 
 .main__filters {
   background-color: #fff;
-  width: 800px;
+  width: 850px;
   border: 2px solid #f97316;
   border-radius: 20px;
   padding: 15px;
@@ -161,7 +161,11 @@
   }
 
   .main__trip-summary {
-    max-width: 600px;
+    max-width: 660px;
+  }
+
+  .main__filters {
+    max-width: 660px;
   }
 }
 
@@ -169,10 +173,18 @@
   .main__trip-summary {
     max-width: 500px;
   }
+
+  .main__filters {
+    max-width: 500px;
+  }
 }
 
 @media (max-width: 480px) {
   .main__trip-summary {
-    max-width: 400px;
+    max-width: 375px;
+  }
+
+  .main__filters {
+    max-width: 375px;
   }
 }

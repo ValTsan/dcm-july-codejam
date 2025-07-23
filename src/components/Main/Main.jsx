@@ -201,13 +201,13 @@ function Main() {
             </div>
           </div>
         </section>
-        <LandmarkList
+        {/* <LandmarkList
           landmarks={filteredLandmarks}
           sort={sort}
           tripLandmarks={tripLandmarks}
           setTripLandmarks={setTripLandmarks}
           onAddToTrip={handleAddToTrip}
-        />
+        /> */}
       </div>
     </div>
   );
