@@ -245,5 +245,4 @@ fig_donut.show()
 fig_indicator.show()
 fig_cumulative.show()
 fig.show()
-
  
