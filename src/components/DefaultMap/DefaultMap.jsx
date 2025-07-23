@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import React from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -6,6 +6,7 @@ import "./DefaultMap.css";
 import landmarks from "../../utils/landmarks";
 
 function DefaultMap({ filter, sort }) {
+  const [hoveredLandmark, setHoveredLandmark] = useState(null);
   const mapContainer = useRef(null);
   const mapRef = useRef(null);
 
@@ -104,6 +105,17 @@ function DefaultMap({ filter, sort }) {
       img.style.boxShadow = "0 0 6px rgba(0, 0, 0, 0.3)";
 
       el.appendChild(img);
+
+      const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        offset: 25,
+      }).setText(landmark.name);
+
+      el.addEventListener("mouseenter", () =>
+        popup.addTo(map).setLngLat(landmark.coords)
+      );
+      el.addEventListener("mouseleave", () => popup.remove());
 
       new mapboxgl.Marker({ element: el })
         .setLngLat(landmark.coords)

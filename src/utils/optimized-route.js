@@ -1,21 +1,21 @@
 [
   {
-    name: "Grand Canyon",
+    name: "Grand Canyon National Park",
     latitude: 36.11,
     longitude: -112.11,
   },
   {
-    name: "Yosemite",
+    name: "Yosemite National Park",
     latitude: 37.87,
     longitude: -119.54,
   },
   {
-    name: "Yellowstone",
+    name: "Yellowstone National Park",
     latitude: 44.43,
     longitude: -110.59,
   },
   {
-    name: "Zion",
+    name: "Zion National Park",
     latitude: 37.3,
     longitude: -113.03,
   },
@@ -35,7 +35,7 @@
     longitude: -74.04,
   },
   {
-    name: "Arches",
+    name: "Arches National Park",
     latitude: 38.73,
     longitude: -109.59,
   },

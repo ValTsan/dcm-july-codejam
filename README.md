@@ -2,6 +2,8 @@
 
 This is a collaborative MVP project for the **July SE + DS Code Jam**. Our app recommends the best summer sightseeing route across the U.S. based on popular landmarks and photo data, combining mapping tools, user interface, and data science logic.
 
+🌐 Live Demo: https://daytrippr.netlify.app
+
 
 ## 🛠️ Tech Stack
 - ⚡️ Vite + React – Frontend Framework
@@ -40,9 +42,12 @@ This is a collaborative MVP project for the **July SE + DS Code Jam**. Our app r
 
 
 # 👥 Collaborators
-- Jeel Faldu
-- Viktor Kliufinskyi
-- Steven Bolin
+
+- Valerie Tsan (SE)
+- Steven Bolin (SE)
+- Jeel Faldu (DS)
+- Viktor Kliufinskyi (DS)
+  
 
   
 ## License 📄

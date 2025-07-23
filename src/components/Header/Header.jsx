@@ -1,20 +1,30 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import "./Header.css";
 import Logo from "/header-logo.png";
 
 const Header = ({ setModalType }) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
+  }, [isMobileMenuOpen]);
+
   return (
     <header className="header">
       <div className="header__navbar">
         <img className="header__nav-logo" src={Logo}></img>
-        <ul className="header__nav">
+        <button className="header__hamburger" onClick={toggleMenu}></button>
+
+        <ul className={`header__nav ${isMobileMenuOpen ? "active" : ""}`}>
           <li className="header__nav-list">
-            <a href="#about" className="header__nav-link">
+            <a href="#about" className="header__nav-link" onClick={toggleMenu}>
               About
             </a>
           </li>
           <li className="header__nav-list">
-            <a href="#trails" className="header__nav-link">
+            <a href="#trails" className="header__nav-link" onClick={toggleMenu}>
               Trails
             </a>
           </li>
@@ -22,7 +32,10 @@ const Header = ({ setModalType }) => {
             <button
               type="button"
               className="header__nav-btn"
-              onClick={() => setModalType("login")}
+              onClick={() => {
+                setModalType("login");
+                toggleMenu();
+              }}
             >
               Log In
             </button>
@@ -31,7 +44,10 @@ const Header = ({ setModalType }) => {
             <button
               type="button"
               className="header__signup-btn"
-              onClick={() => setModalType("signup")}
+              onClick={() => {
+                setModalType("signup");
+                toggleMenu();
+              }}
             >
               Sign Up
             </button>
