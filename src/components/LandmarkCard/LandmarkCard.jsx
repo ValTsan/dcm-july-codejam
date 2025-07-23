@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import "./LandmarkCard.css";
 import landmarks from "../../utils/landmarks";
 import summary from "../../utils/summary";
@@ -13,6 +15,7 @@ function LandmarkCard({ landmark, onAddToTrip }) {
 
   const { optimized_distance } = summary[0];
   const difficulty = getDifficultyByDistance(optimized_distance);
+  const [added, setAdded] = useState(false);
 
   return (
     <div className="landmark-card">
@@ -39,7 +42,7 @@ function LandmarkCard({ landmark, onAddToTrip }) {
         {landmark.popularity}
       </p>{" "}
       <button
-        className="landmark-card__button"
+        className={`landmark-card__button ${added ? "added" : ""}`}
         onClick={() => onAddToTrip(landmark)}
       >
         Add to My Trip
