@@ -58,28 +58,45 @@ The dataset is manually curated and includes 10 major U.S. landmarks with the fo
 - `longitude`
 - `category`
 
-## 🧪 Key Results Summary
-Pie Chart Insights:
-- Longest leg: Golden Gate Bridge → Great Smoky Mountains (41.5%)
-- Shortest leg: Grand Canyon → Zion National Park (1.86%)
-- Second longest: Mount Rushmore → Yosemite (18.1%)
+## 📈 Overall Conclusion
+This project explores optimizing travel routes between popular U.S. landmarks to reduce distance and improve efficiency.
 
-## Conclusion:
-A single long leg significantly affects the total trip length. This emphasizes the value of route optimization and planning for budget, time, and fuel usage.
+Compared to a random route, the optimized route cuts total distance by over 4,600 km (~35% less). This shows the real-world value of route optimization for travel and logistics.
 
-# 🤝 SE and DS July Code Jam Collaboration 
+Visualizations helped highlight key segments, like the Golden Gate Bridge to Great Smoky Mountains leg making up over 40% of the journey. Such insights aid in planning breaks, fuel stops, and managing travel load.
 
-## 👩‍💻 Software Engineers 
+Assuming an average speed of 60 km/h, the optimized route could save up to 78 hours of driving time, reducing fatigue significantly.
+
+### Future Directions
+- Allow users to select preferred stops for personalized routes.
+- Add travel info like hotels, restaurants, and gas stations using APIs.
+- Expand dataset to include more attractions nationwide.
+- Integrate real-time data (traffic, weather) for smarter routing.
+- Optimize for other goals like shortest time or scenic routes.
+- Build an interactive web dashboard for live route updates.
+- Add eco-friendly features like carbon footprint and EV stops.
+
+Built with Python and open-source libraries, this project is reproducible and easy to customize. It forms a foundation for a smarter, user-focused travel planner that can grow with more features and data.
+
+## 🤝 SE and DS July Code Jam Collaboration 
+
+### 👩‍💻 Software Engineers 
 -  Built responsive front-end using React and CSS Modules 
 -  Integrated interactive Mapbox map to display landmark markers  
 -  Rendered scrollable landmark cards from JSON data
 -  Developed filters and sorting UI with React Select
 -  Coordinated with DS team to visualize route data
 
-## 📊 Data Scientist
-- Cleaned and pre-processed location and landmark data
-- Analyzed review counts and photo frequency for ranking stops
-- Provided structured JSON output for SE integration
+### 📊 Data Scientist
+- Cleaned and prepared location and landmark data.
+- Explored data to find key patterns.
+- Analyzed review counts and photo frequency.
+- Built baseline and optimized route models.
+- Calculated distances using Geopy.
+- Created map and different graphs for visualization.
+- Shared JSON data for SE team integration.
+- Documented the process in a Jupyter notebook.
+- Compared optimized routes with baseline results.
 
 ## ✨ Features
 - Interactive map showing top U.S. Landmarks
@@ -87,8 +104,7 @@ A single long leg significantly affects the total trip length. This emphasizes t
 - Scrollable card layout linked to map
 - Modular and scalable file structure
 
-# 👥 Collaborators
-
+## 👥 Collaborators
 - Valerie Tsan (SE)
 - Steven Bolin (SE)
 - Jeel Faldu (DS)
