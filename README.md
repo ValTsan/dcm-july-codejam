@@ -3,6 +3,7 @@
 This is a collaborative MVP project for the **July SE + DS Code Jam**. Our app recommends the best summer sightseeing route across the U.S. based on popular landmarks and photo data, combining mapping tools, user interface, and data science logic. 
 
 We aim to optimize a cross-country road trip by minimizing total travel distance between ten iconic U.S. landmarks and natural attractions. The project includes a baseline model (random route) and an optimized model (minimized distance), along with visualizations for route insights.
+
 Highlights:
 - Route planning using geographic coordinates
 - Interactive maps and pie charts for leg distances
